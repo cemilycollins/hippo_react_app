@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import NavBar from './components/NavBar'
+import HospitalContainer from './containers/HospitalContainer'
+import { connect } from "react-redux"
+import { fetchHospitals } from './redux/actions'
 
 class App extends Component {
+
+  componentDidMount() {
+    if (this.props.hospitals.length === 0) {
+      this.props.fetchHospitals()
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <NavBar />
+        <HospitalContainer/>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = ({hospitals}) => ({hospitals})
+
+export default connect(mapStateToProps, {fetchHospitals})(App);
