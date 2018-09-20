@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux"
+import { logoutUser } from "../redux/actions"
 
 const NavBar = props => {
   return (
@@ -19,20 +21,21 @@ const NavBar = props => {
       >
         Login
       </NavLink>
+      {props.user && props.user.name ? <NavLink id="nav-item"
+        exact
+        to="/profile"
+        className="ui item"
+        activeClassName="ui active item"
+      >
+        Profile
+      </NavLink> : null}
+      {props.user && props.user.name ? <div className="ui button" onClick={props.logoutUser}>
+        Log Out
+      </div> : null}
     </div>
   );
 };
 
-// {props.user && props.user.name ? <NavLink id="nav-item"
-//   exact
-//   to="/profile"
-//   className="ui item"
-//   activeClassName="ui active item"
-// >
-//   Profile
-// </NavLink> : null}
-// {props.user && props.user.name ? <div className="ui button" onClick={props.logOut}>
-//   Log Out
-// </div> : null}
+const mapStateToProps = ({user}) => ({user})
 
-export default NavBar;
+export default connect(mapStateToProps, {logoutUser})(NavBar);

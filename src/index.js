@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from "react-redux"
-import { createStore, applyMiddleware } from "redux"
-import rootReducer from "./redux/reducers"
+import { createStore, applyMiddleware, compose } from "redux"
 import { BrowserRouter } from 'react-router-dom'
 import thunk from 'redux-thunk';
+import createHistory from 'history/createBrowserHistory'
+import { connectRouter, routerMiddleware } from 'connected-react-router'
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+import './index.css';
+import App from './App';
+import rootReducer from "./redux/reducers"
+
+export const history = createHistory()
+
+const store = createStore(connectRouter(history)(rootReducer), {}, compose(applyMiddleware(thunk, routerMiddleware(history)), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
 
 // , window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 
