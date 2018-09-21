@@ -4,11 +4,8 @@ import { connect } from "react-redux"
 
 const HospitalContainer = props => {
   return (
-    <div>
-    <p>Hospital Container</p>
-    <ul>
+    <div className="ui cards">
       {props.hospitals ? props.hospitals.map(hospital => <HospitalCard hospital={hospital}/>) : null}
-    </ul>
     </div>
   )
 }

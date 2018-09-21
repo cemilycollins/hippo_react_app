@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from "react-redux"
-import { Route, Switch, Link, withRouter } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 
 import NavBar from './components/NavBar'
 import HospitalContainer from './containers/HospitalContainer'
 import CreateUserForm from './components/CreateUserForm'
 import LoginForm from './components/LoginForm'
+import Profile from './components/Profile'
+import HospitalPage from './containers/HospitalPage'
 import { ROOT_URL, updateUser, fetchHospitals } from './redux/actions'
 
 
@@ -31,13 +33,23 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar user={this.props.user}/>
-        <HospitalContainer/>
-        <LoginForm />
+        <Switch>
+          <Route exact path='/' component={HospitalContainer} />
+          <Route exact path='/login' component={LoginForm} />
+          <Route exact path='/signup' component={CreateUserForm} />
+          <Route exact path='/profile' render={() => <Profile user={this.props.user}/>} />
+          <Route path='/hospitals/:hospital_id' render={props => <HospitalPage id={props.match.params.hospital_id}/>} />
+
+        </Switch>
+
       </div>
     );
   }
 }
 
-const mapStateToProps = ({hospitals, user}) => ({hospitals, user})
+const mapStateToProps = (state) => ({
+  hospitals: state.hospitals,
+  user: state.user
+})
 
-export default connect(mapStateToProps, {fetchHospitals, updateUser})(withRouter(App));
+export default withRouter(connect(mapStateToProps, {fetchHospitals, updateUser})(App))

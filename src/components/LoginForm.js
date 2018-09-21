@@ -36,7 +36,7 @@ class Login extends React.Component {
 
   render(){
   return (
-    <div style={{padding: '10%', width: '75%', margin: 'auto'}}>
+    <div id="login">
       <h2>Sign In</h2>
       <form className="ui form" onSubmit={this.handleSubmit}>
         <div className="ui form field">

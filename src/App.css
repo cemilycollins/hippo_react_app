@@ -9,7 +9,17 @@
   margin-top: 20px;
 }
 
-
 .ui.header {
   color: white;
+}
+
+#profile {
+  padding: 5%;
+  margin: auto;
+}
+
+#login {
+  padding: 10%;
+  width: 75%;
+  margin: auto;
 }

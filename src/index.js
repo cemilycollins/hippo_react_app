@@ -3,10 +3,9 @@ import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from "react-redux"
 import { createStore, applyMiddleware, compose } from "redux"
-import { BrowserRouter } from 'react-router-dom'
 import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory'
-import { connectRouter, routerMiddleware } from 'connected-react-router'
+import { connectRouter, routerMiddleware, ConnectedRouter } from 'connected-react-router'
 
 import './index.css';
 import App from './App';
@@ -16,13 +15,11 @@ export const history = createHistory()
 
 const store = createStore(connectRouter(history)(rootReducer), {}, compose(applyMiddleware(thunk, routerMiddleware(history)), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
 
-// , window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter >
+    <ConnectedRouter history={history} >
       <App />
-    </BrowserRouter>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root'));
 registerServiceWorker();

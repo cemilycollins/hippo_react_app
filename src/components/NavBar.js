@@ -13,25 +13,31 @@ const NavBar = props => {
           <div className="ui sub header" style={{color: "white"}}> &nbsp; Find a hospital before you can say "Hippo!"</div>
         </h2>
       </NavLink>
-      <NavLink
-        exact
-        to="/login"
-        className="ui item"
-        activeClassName="ui active item"
-      >
-        Login
-      </NavLink>
-      {props.user && props.user.name ? <NavLink id="nav-item"
+      {props.user ? <NavLink id="nav-item"
         exact
         to="/profile"
         className="ui item"
         activeClassName="ui active item"
       >
         Profile
-      </NavLink> : null}
-      {props.user && props.user.name ? <div className="ui button" onClick={props.logoutUser}>
+      </NavLink> : <NavLink
+        exact
+        to="/signup"
+        className="ui item"
+        activeClassName="ui active item"
+      >
+        Sign Up
+      </NavLink>}
+      {props.user ? <div className="ui button" onClick={props.logoutUser}>
         Log Out
-      </div> : null}
+      </div> : <NavLink
+        exact
+        to="/login"
+        className="ui item"
+        activeClassName="ui active item"
+      >
+        Login
+      </NavLink>}
     </div>
   );
 };
