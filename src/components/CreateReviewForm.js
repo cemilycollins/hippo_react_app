@@ -10,7 +10,7 @@ class CreateReviewForm extends React.Component {
       body: "",
       user_id: props.user.id,
       hospital_id: props.id,
-      date: Date.today,
+      date: new Date(),
       rating: 0
     }
   }
@@ -24,13 +24,12 @@ class CreateReviewForm extends React.Component {
 
   handleBodyChange = (e) => {
     this.setState({
-      body: e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    debugger
     if (this.state.rating === 0 || this.state.body === "") {
       alert("Please fill out all fields before submitting the form")
     } else {
@@ -51,7 +50,7 @@ class CreateReviewForm extends React.Component {
       })
       .then(res=> res.json())
       .then(json=> {
-        if (json.name) {
+        if (json.date) {
           this.props.hideForm()
         } else {
           alert(json.error)
@@ -79,6 +78,10 @@ class CreateReviewForm extends React.Component {
             <label>{4}</label> &nbsp;
             <input className="ui checkbox" type="checkbox" onChange={this.handleChange} value={5} checked={this.state.rating === 5} name="rating" />
             <label>{5}</label>
+          </div>
+          <div className="ui form field">
+            <label htmlFor="date">Date of visit:</label>
+            <input onChange={this.handleBodyChange} name="date" type="date" />
           </div>
           <div className="ui form field">
             <label htmlFor="body">Body</label>
