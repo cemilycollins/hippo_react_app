@@ -16,3 +16,11 @@ export function logoutUser() {
   localStorage.clear()
   return {type: "UPDATE_USER", user: null}
 }
+
+export function addReview(review) {
+  return {type: "ADD_REVIEW", review: review }
+}
+
+export function editReview(review) {
+  return {type: "EDIT_REVIEW", review: review }
+}

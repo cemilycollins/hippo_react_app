@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import { ROOT_URL, updateUser } from "../redux/actions"
 import { bindActionCreators } from 'redux'
 import { push } from 'connected-react-router'
+import { Link } from 'react-router-dom'
 
 class Login extends React.Component {
   handleSubmit = e => {
@@ -37,7 +38,10 @@ class Login extends React.Component {
   render(){
   return (
     <div id="login">
-      <h2>Sign In</h2>
+      <div style={{"text-align": "center"}}>
+      <h2>Let's get you signed in</h2>
+      <h4>If you're new to Hippo, <Link to='/signup'>click here</Link> to sign up!</h4>
+      </div>
       <form className="ui form" onSubmit={this.handleSubmit}>
         <div className="ui form field">
           <label htmlFor="email">Email</label>

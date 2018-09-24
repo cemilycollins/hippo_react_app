@@ -1,17 +1,16 @@
 import React from "react"
 import { connect } from 'react-redux'
-import { ROOT_URL, addReview } from '../redux/actions'
+import { ROOT_URL, editReview } from '../redux/actions'
 
 
-class CreateReviewForm extends React.Component {
+class EditReviewForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      body: "",
-      user_id: props.user.id,
-      hospital_id: props.id,
-      date: new Date(),
-      rating: 0
+      review_id: props.review.id,
+      body: props.review.body,
+      date: props.review.date,
+      rating: props.review.rating
     }
   }
 
@@ -29,20 +28,20 @@ class CreateReviewForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+
     if (this.state.rating === 0 || this.state.body === "") {
       alert("Please fill out all fields before submitting the form")
     } else {
-      fetch(ROOT_URL + '/reviews',{
-        method:'POST',
+      fetch(ROOT_URL + `/reviews/${this.state.review_id}`,{
+        method:'PATCH',
         headers:{
           'Content-Type':'application/json',
           'Accept':'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify({
+          id: this.state.review_id,
           body: this.state.body,
-          user_id: this.state.user_id,
-          hospital_id: this.state.hospital_id,
           rating: this.state.rating,
           date: this.state.date
         })
@@ -51,7 +50,7 @@ class CreateReviewForm extends React.Component {
       .then(json=> {
         if (json.date) {
           this.props.hideForm()
-          this.props.addReview(json)
+          this.props.editReview(json)
         } else {
           alert(json.error)
         }
@@ -63,7 +62,7 @@ class CreateReviewForm extends React.Component {
     return (
       <div style={{width: '75%', margin: 'auto'}}>
       <p></p>
-      <h2>Your New Review</h2>
+      <h4>Edit Your Review</h4>
         <form onSubmit={this.handleSubmit} className="ui form" >
           <div className="ui inline form field">
             <label htmlFor="rating">Rating:</label>
@@ -80,11 +79,11 @@ class CreateReviewForm extends React.Component {
           </div>
           <div className="ui form field">
             <label htmlFor="date">Date of visit:</label>
-            <input onChange={this.handleBodyChange} name="date" type="date" />
+            <input onChange={this.handleBodyChange} name="date" type="date" value={this.state.date} />
           </div>
           <div className="ui form field">
             <label htmlFor="body">Body</label>
-            <textarea onChange={this.handleBodyChange} name="body" placeholder="Type your review here..." />
+            <textarea onChange={this.handleBodyChange} name="body" placeholder="Type your review here..." value={this.state.body} />
           </div>
           <input className="ui purple button" type="submit" name="Submit"/>
         </form>
@@ -96,4 +95,4 @@ class CreateReviewForm extends React.Component {
 
 const mapStateToProps = ({user}) => ({user})
 
-export default connect(mapStateToProps, {addReview})(CreateReviewForm)
+export default connect(mapStateToProps, { editReview })(EditReviewForm)
