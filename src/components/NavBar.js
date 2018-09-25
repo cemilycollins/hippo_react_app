@@ -28,7 +28,7 @@ const NavBar = props => {
       >
         Sign Up
       </NavLink>}
-      {props.user ? <div className="ui button" onClick={props.logoutUser}>
+      {props.user ? <div className="ui item" onClick={props.logoutUser}>
         Log Out
       </div> : <NavLink
         exact

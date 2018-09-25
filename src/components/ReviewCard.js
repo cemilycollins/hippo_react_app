@@ -33,6 +33,7 @@ class ReviewCard extends React.Component {
       .then(json => {
         if (json.id) {
           this.props.deleteReview(json)
+          this.handleClick()
         } else {
           alert(json.error)
         }

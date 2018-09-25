@@ -26,6 +26,7 @@
 #profile {
   padding: 5%;
   margin: auto;
+  max-width: 1100px;
 }
 
 .hospitalContainer {
@@ -49,4 +50,9 @@
 #placesSearch {
   max-width: 600px;
   margin: auto;
+}
+
+h2.search.label {
+  margin: auto;
+  text-align: center;
 }

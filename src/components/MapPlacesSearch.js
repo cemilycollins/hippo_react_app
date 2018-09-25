@@ -23,16 +23,17 @@ class MapPlacesSearch extends React.Component {
 
   render() {
     return (
-      <PlacesAutocomplete
+      <PlacesAutocomplete className="ui form"
         value={this.state.address}
         onChange={this.handleChange}
         onSelect={this.handleSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div className="ui form" id="placesSearch">
-            <input className="ui input"
+          <div className="ui inline form field" id="placesSearch">
+            <h2 className="search label">Search hospitals near you</h2>
+            <input
               {...getInputProps({
-                placeholder: 'Search Places ...',
+                placeholder: 'Zip Code, City, State ...',
                 className: 'location-search-input',
               })}
             />
