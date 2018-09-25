@@ -1,4 +1,14 @@
 import {combineReducers} from "redux"
+import {ROOT_URL} from './actions'
+
+function fetchHospital(id) {
+  fetch(ROOT_URL + `/hospitals/${id}`, {
+    method: "GET",
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    }
+  }).then(r => r.json())
+}
 
 function hospitalsReducer(state = [], action) {
   switch (action.type) {
@@ -55,15 +65,14 @@ function userReducer(state = null, action) {
       user.reviews.push(action.review)
       return user
     case "EDIT_REVIEW":
-      let user2 = state
-      user2.reviews = user2.reviews.map(r => {
+      let newReviews = state.reviews.map(r => {
         if (r.id === action.review.id) {
           return action.review
         } else {
           return r
         }
       })
-      return user2
+      return {...state, reviews: newReviews}
     case "DELETE_REVIEW":
       let reviews = state.reviews
       let filteredReviews = reviews.filter(r => r.id !== action.review.id)
