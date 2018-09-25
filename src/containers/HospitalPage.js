@@ -17,8 +17,8 @@ class HospitalPage extends React.Component {
   }
 
   render() {
-    if (this.props.hospitals.length > 0) {
-      let hospital = this.props.hospitals.find(h => h.id === parseInt(this.props.id, 10))
+    let hospital = this.props.hospitals.find(h => h.id === parseInt(this.props.id, 10))
+    if (this.props.hospitals.length > 0 && hospital) {
       return (
         <div id="profile">
           <h2><i className="hospital outline icon"/> {this.hospitalName(hospital)}</h2>

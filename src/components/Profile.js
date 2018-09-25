@@ -25,9 +25,14 @@ class Profile extends React.Component {
         <div id="profile">
           <h2>My Profile</h2>
           <div className="ui teal segment">
-            <img className="ui small circular image" src={user.profile_pic} alt="profile"/>
-            <h2>{user.name} <i onClick={this.handleClick} className="ui edit icon" /></h2>
-            <h3>{user.city}, {user.state}</h3>
+            <div className="three wide column">
+              <img className="ui small circular image" src={user.profile_pic} alt="profile"/>
+            </div>
+            <div className="nine wide column">
+              <h2>{user.name} <i onClick={this.handleClick} className="ui edit icon" /></h2>
+              <p><b>{user.city}, {user.state}</b></p>
+              <p>{user.email}</p>
+            </div>
           </div>
           {this.state.editUserClicked ? <EditUserForm hideForm={this.handleClick} /> : null}
           <div className="ui divider"></div>

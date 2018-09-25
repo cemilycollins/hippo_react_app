@@ -31,7 +31,7 @@ class Login extends React.Component {
       .then(json => {
         this.props.updateUser(json.user);
         localStorage.setItem("token", json.token);
-        this.props.push('/profile')
+        this.props.push(`users/${json.user.id}`)
       })
   }
 

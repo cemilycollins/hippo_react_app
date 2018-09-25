@@ -8,9 +8,13 @@ const OtherUserProfile = props => {
     return (
       <div id="profile">
         <div className="ui teal segment">
-          <img className="ui small circular image" src={user.profile_pic} alt="profile"/>
-          <h2>{user.name}</h2>
-          <h3>{user.city}, {user.state}</h3>
+          <div className="three wide column">
+            <img className="ui small circular image" src={user.profile_pic} alt="profile"/>
+          </div>
+          <div className="nine wide column">
+            <h2>{user.name}</h2>
+            <p><b>{user.city}, {user.state}</b></p>
+          </div>
         </div>
         <div className="ui divider"></div>
         {user.reviews.length > 0 ? <ReviewsContainer reviews={user.reviews}/> : null }

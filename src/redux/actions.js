@@ -18,15 +18,27 @@ export function logoutUser() {
 }
 
 export function addReview(review) {
-  return {type: "ADD_REVIEW", review: review }
+  return function(dispatch) {
+    fetch(ROOT_URL + `/hospitals/${review.hospital_id}`)
+      .then(r => r.json())
+      .then(json => dispatch({type: "ADD_REVIEW", review: review, hospital: json}))
+  }
 }
 
 export function editReview(review) {
-  return {type: "EDIT_REVIEW", review: review }
+  return function(dispatch) {
+    fetch(ROOT_URL + `/hospitals/${review.hospital_id}`)
+      .then(r => r.json())
+      .then(json => dispatch({type: "EDIT_REVIEW", review: review, hospital: json}))
+  }
 }
 
 export function deleteReview(review) {
-  return {type: "DELETE_REVIEW", review: review }
+  return function(dispatch) {
+    fetch(ROOT_URL + `/hospitals/${review.hospital_id}`)
+      .then(r => r.json())
+      .then(json => dispatch({type: "DELETE_REVIEW", review: review, hospital: json}))
+  }
 }
 
 export function fetchUsers() {
