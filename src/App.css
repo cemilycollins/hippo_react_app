@@ -1,5 +1,11 @@
 .ui.inverted.menu {
   background: #733BBF;
+  border-radius: 0;
+}
+
+.ui.small.image {
+  float: left;
+  padding: 10px;
 }
 
 .ui.purple.button {
@@ -13,13 +19,34 @@
   color: white;
 }
 
+.ui.hospital.segment {
+  padding: 10px;
+}
+
 #profile {
   padding: 5%;
+  margin: auto;
+}
+
+.hospitalContainer {
+  max-width: 600px;
   margin: auto;
 }
 
 #login {
   padding: 10%;
   width: 75%;
+  margin: auto;
+}
+
+#map {
+  height: 80vh;
+  width: 90%;
+  margin: auto;
+  padding: 20px;
+}
+
+#placesSearch {
+  max-width: 600px;
   margin: auto;
 }

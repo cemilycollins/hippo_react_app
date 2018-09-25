@@ -9,7 +9,8 @@ import CreateUserForm from './components/CreateUserForm'
 import LoginForm from './components/LoginForm'
 import Profile from './components/Profile'
 import HospitalPage from './containers/HospitalPage'
-import { ROOT_URL, updateUser, fetchHospitals } from './redux/actions'
+import OtherUserProfile from './components/OtherUserProfile'
+import { ROOT_URL, updateUser, fetchHospitals, fetchUsers } from './redux/actions'
 
 
 class App extends Component {
@@ -17,6 +18,9 @@ class App extends Component {
   componentDidMount() {
     if (this.props.hospitals.length === 0) {
       this.props.fetchHospitals()
+    }
+    if (this.props.users.length === 0) {
+      this.props.fetchUsers()
     }
     if (localStorage.getItem('token')) {
       fetch(ROOT_URL + '/me', {
@@ -37,9 +41,9 @@ class App extends Component {
           <Route exact path='/' component={HospitalContainer} />
           <Route exact path='/login' component={LoginForm} />
           <Route exact path='/signup' component={CreateUserForm} />
-          <Route exact path='/profile' render={() => <Profile user={this.props.user}/>} />
           <Route path='/hospitals/:hospital_id' render={props => <HospitalPage id={props.match.params.hospital_id}/>} />
-
+          {this.props.user ? <Route exact path={`/users/${this.props.user.id}`} render={() => <Profile user={this.props.user}/>} /> : null }
+          <Route path='/users/:user_id' render={props => <OtherUserProfile id={props.match.params.user_id}/>} />
         </Switch>
 
       </div>
@@ -49,7 +53,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   hospitals: state.hospitals,
-  user: state.user
+  user: state.user,
+  users: state.users
 })
 
-export default withRouter(connect(mapStateToProps, {fetchHospitals, updateUser})(App))
+export default withRouter(connect(mapStateToProps, {fetchHospitals, updateUser, fetchUsers})(App))

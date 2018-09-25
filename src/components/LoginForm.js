@@ -41,6 +41,7 @@ class Login extends React.Component {
       <div style={{"text-align": "center"}}>
       <h2>Let's get you signed in</h2>
       <h4>If you're new to Hippo, <Link to='/signup'>click here</Link> to sign up!</h4>
+      <p></p>
       </div>
       <form className="ui form" onSubmit={this.handleSubmit}>
         <div className="ui form field">

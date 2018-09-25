@@ -62,10 +62,10 @@ class EditReviewForm extends React.Component {
     return (
       <div style={{width: '75%', margin: 'auto'}}>
       <p></p>
-      <h4>Edit Your Review</h4>
+      <h3>Edit Your Review</h3>
         <form onSubmit={this.handleSubmit} className="ui form" >
+          <label htmlFor="rating"><b>Rating:</b></label>
           <div className="ui inline form field">
-            <label htmlFor="rating">Rating:</label>
             <input className="ui checkbox" type="checkbox" onChange={this.handleChange} value={1} checked={this.state.rating === 1} name="rating" />
             <label>{1}</label> &nbsp;
             <input className="ui checkbox" type="checkbox" onChange={this.handleChange} value={2} checked={this.state.rating === 2} name="rating" />

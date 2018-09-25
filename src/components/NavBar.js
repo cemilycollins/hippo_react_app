@@ -10,12 +10,12 @@ const NavBar = props => {
         <h2 className="ui header">
           <i className="h square icon" />
           <div className="content">Hippo</div>
-          <div className="ui sub header" style={{color: "white"}}> &nbsp; Find a hospital before you can say "Hippo!"</div>
+          <div className="ui sub header" style={{color: "white"}}> &nbsp; Find the best hospitals in town!</div>
         </h2>
       </NavLink>
       {props.user ? <NavLink id="nav-item"
         exact
-        to="/profile"
+        to={`/users/${props.user.id}`}
         className="ui item"
         activeClassName="ui active item"
       >

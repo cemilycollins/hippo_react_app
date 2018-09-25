@@ -1,16 +1,11 @@
 import {combineReducers} from "redux"
 
-const rootReducer = combineReducers({
-  hospitals: hospitalsReducer,
-  user: userReducer
-})
-
 function hospitalsReducer(state = [], action) {
   switch (action.type) {
     case "FETCH_HOSPITALS":
       return action.hospitals
     case "ADD_REVIEW":
-      return state.map(h => {
+      let hospitals = state.map(h => {
         if (h.id === action.review.hospital_id) {
           h.reviews.push(action.review)
           return h
@@ -18,21 +13,34 @@ function hospitalsReducer(state = [], action) {
           return h
         }
       })
+      return hospitals
     case "EDIT_REVIEW":
-      return state.map(h => {
+      let newHospitals = state.map(h => {
         if (h.id === action.review.hospital_id) {
-          h.reviews.map(r => {
+          let newReviews = h.reviews.map(r => {
             if (r.id === action.review.id) {
               return action.review
             } else {
               return r
             }
           })
+          h.reviews = newReviews
           return h
         } else {
           return h
         }
       })
+      return newHospitals
+    case "DELETE_REVIEW":
+    return state.map(h => {
+      if (h.id === action.review.hospital_id) {
+        let newReviews = h.reviews.filter(r => r.id !== action.review.id)
+        h.reviews = newReviews
+        return h
+      } else {
+        return h
+      }
+    })
     default:
       return state
   }
@@ -43,12 +51,12 @@ function userReducer(state = null, action) {
     case "UPDATE_USER":
       return action.user
     case "ADD_REVIEW":
-      let user = state
+      let user = {...state}
       user.reviews.push(action.review)
       return user
     case "EDIT_REVIEW":
       let user2 = state
-      user2.reviews.map(r => {
+      user2.reviews = user2.reviews.map(r => {
         if (r.id === action.review.id) {
           return action.review
         } else {
@@ -57,12 +65,27 @@ function userReducer(state = null, action) {
       })
       return user2
     case "DELETE_REVIEW":
-      let user3 = state
-      user3.reviews.filter(r => r.id !== action.id)
-      return user3
+      let reviews = state.reviews
+      let filteredReviews = reviews.filter(r => r.id !== action.review.id)
+      return {...state, reviews: filteredReviews}
     default:
       return state
   }
 }
+
+function usersReducer(state = [], action) {
+  switch (action.type) {
+    case "FETCH_USERS":
+      return action.users
+    default:
+      return state
+  }
+}
+
+const rootReducer = combineReducers({
+  hospitals: hospitalsReducer,
+  user: userReducer,
+  users: usersReducer
+})
 
 export default rootReducer
