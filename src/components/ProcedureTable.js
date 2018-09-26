@@ -4,19 +4,16 @@ function formatDollars(num) {
   return (num).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
 }
 
-// <th colspan="1"># Hospitals with this procedure</th>
-//
-// <td>{p.procedure.total_hospitals}</td>
-
 const ProcedureTable = props => {
   const procedures = props.procedures
   return (
     <div>
-    <table class="ui celled striped table">
+    <h2><i className="dollar sign"/>Pricing:</h2>
+    <table className="ui celled striped table">
       <thead>
         <tr>
           <th colspan="5">This Hospital</th>
-          <th colspan="1">National</th>
+          <th colspan="2">National</th>
         </tr>
         <tr>
           <th colspan="1">Procedure Name</th>
@@ -25,6 +22,7 @@ const ProcedureTable = props => {
           <th colspan="1">Average Total Payment</th>
           <th colspan="1"># Patients Treated (2016)</th>
           <th colspan="1">National Avg. Cost</th>
+          <th colspan="1"># Hospitals Performing This Procedure</th>
         </tr>
       </thead>
       <tbody>
@@ -35,6 +33,7 @@ const ProcedureTable = props => {
           <td>${formatDollars(p.average_total_payments)}</td>
           <td>{p.total_discharges}</td>
           <td>${formatDollars(p.procedure.nat_avg_cost)}</td>
+          <td>{p.procedure.total_hospitals}</td>
         </tr>)}
       </tbody>
     </table>

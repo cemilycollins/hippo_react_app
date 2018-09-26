@@ -38,6 +38,8 @@ class HospitalPage extends React.Component {
       return (
         <div id="profile">
           <h2><i className="hospital outline icon"/> {this.hospitalName(hospital)}</h2>
+          <div className="ui right floated purple button">Hi there!
+          </div>
           <div className="ui divider"></div>
             <HospitalDetail hospital={hospital} />
           <div className="ui divider"></div>
