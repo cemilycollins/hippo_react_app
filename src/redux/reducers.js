@@ -1,5 +1,11 @@
 import {combineReducers} from "redux"
-import {ROOT_URL} from './actions'
+
+function formatJson(json) {
+  return {
+    rating_average: json.rating_average,
+    total_reviews: json.total_reviews
+  }
+}
 
 function hospitalsReducer(state = [], action) {
   switch (action.type) {
@@ -8,7 +14,7 @@ function hospitalsReducer(state = [], action) {
     case "ADD_REVIEW":
       let hospitals = state.map(h => {
         if (h.id === action.review.hospital_id) {
-          return action.hospital
+          return {...h, ...formatJson(action.hospital)}
         } else {
           return h
         }
@@ -17,7 +23,7 @@ function hospitalsReducer(state = [], action) {
     case "EDIT_REVIEW":
       let newHospitals = state.map(h => {
         if (h.id === action.review.hospital_id) {
-          return action.hospital
+          return {...h, ...formatJson(action.hospital)}
         } else {
           return h
         }
@@ -26,7 +32,7 @@ function hospitalsReducer(state = [], action) {
     case "DELETE_REVIEW":
     return state.map(h => {
       if (h.id === action.review.hospital_id) {
-        return action.hospital
+        return {...h, ...formatJson(action.hospital)}
       } else {
         return h
       }

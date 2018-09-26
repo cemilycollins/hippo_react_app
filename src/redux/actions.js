@@ -1,5 +1,13 @@
 export const ROOT_URL = "http://localhost:3000"
 
+function fetchHospital(action, review) {
+  return function(dispatch) {
+    fetch(ROOT_URL + `/hospitals/${review.hospital_id}`)
+      .then(r => r.json())
+      .then(json => dispatch({type: action, review: review, hospital: json}))
+  }
+}
+
 export function fetchHospitals() {
   return function(dispatch) {
     fetch(ROOT_URL + "/hospitals")
@@ -18,27 +26,15 @@ export function logoutUser() {
 }
 
 export function addReview(review) {
-  return function(dispatch) {
-    fetch(ROOT_URL + `/hospitals/${review.hospital_id}`)
-      .then(r => r.json())
-      .then(json => dispatch({type: "ADD_REVIEW", review: review, hospital: json}))
-  }
+  return fetchHospital("ADD_REVIEW", review)
 }
 
 export function editReview(review) {
-  return function(dispatch) {
-    fetch(ROOT_URL + `/hospitals/${review.hospital_id}`)
-      .then(r => r.json())
-      .then(json => dispatch({type: "EDIT_REVIEW", review: review, hospital: json}))
-  }
+  return fetchHospital("EDIT_REVIEW", review)
 }
 
 export function deleteReview(review) {
-  return function(dispatch) {
-    fetch(ROOT_URL + `/hospitals/${review.hospital_id}`)
-      .then(r => r.json())
-      .then(json => dispatch({type: "DELETE_REVIEW", review: review, hospital: json}))
-  }
+  return fetchHospital("DELETE_REVIEW", review)
 }
 
 export function fetchUsers() {

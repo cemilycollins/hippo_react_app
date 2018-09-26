@@ -27,17 +27,14 @@ const HospitalCard = props => {
     newWord[0] = newWord[0].toUpperCase()
     return newWord.join("")
   }).join(" ")
-  const review = hospital.reviews.length > 0 ? hospital.reviews.slice(-1)[0] : null
   return (
     <div onClick={() => props.push(`/hospitals/${hospital.id}`)} className="ui hospital segment" >
     <div className='ui content'>
       <div className='ui black header' id='name'>{name}</div>
-      <div className='meta'>{formatStars(hospital.rating_average)}</div>
+      <div className='meta'>{formatStars(hospital.rating_average)} ({hospital.total_reviews} {hospital.total_reviews === 1 ? "review" : "reviews"})</div>
       <div className='description'>
         <p><b>Address:</b> {hospital.street_address}</p>
         <p>{hospital.city}, {hospital.state} {hospital.zip_code}</p>
-        <p><b>Most Recent Review:</b></p>
-        <p>{review ? `"${review.body}" - ${review.date}` : "No reviews yet for this hospital"}</p>
       </div>
     </div>
   </div>

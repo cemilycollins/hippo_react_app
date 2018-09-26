@@ -53,6 +53,14 @@ class ReviewCard extends React.Component {
     return arr
   }
 
+  formatName(name) {
+    return name.toLowerCase().split(" ").map(word => {
+      let newWord = word.split("")
+      newWord[0] = newWord[0].toUpperCase()
+      return newWord.join("")
+    }).join(" ")
+  }
+
   render() {
   if (this.props.users.length > 0) {
     const review = this.props.review
@@ -64,6 +72,7 @@ class ReviewCard extends React.Component {
             {this.formatStars(review.rating)}
             {this.props.user && this.props.user.id === review.user_id ? <i onClick={this.handleClick} className="right aligned edit outline icon" /> : null }
           </div>
+          <Link to={`/hospitals/${review.hospital_id}`} className='meta'>{this.formatName(review.hospital.name)}</Link>
           <div className='description'>
             <p><b>Reviewer:</b> <Link to={`/users/${reviewUser.id}`}>{reviewUser.name}</Link></p>
             <p><b>Date:</b> {review.date}</p>

@@ -56,3 +56,7 @@ h2.search.label {
   margin: auto;
   text-align: center;
 }
+
+.ui.card .meta {
+  margin-top: 5px;
+}

@@ -17,13 +17,20 @@ function formatStars(rating) {
   return arr
 }
 
+function formatPhone(num) {
+  let a = num.toString()
+  return `(${a.slice(0,3)}) ${a.slice(3,6)}-${a.slice(6,10)}`
+}
+
 const HospitalDetail = props => {
   let hospital = props.hospital
   return (
     <div className="ui teal segment">
       <h3>Average Rating: {formatStars(hospital.rating_average)} ({hospital.reviews.length} reviews)</h3>
-      <h3>Address:</h3>
+      <b>Address:</b>
       <p>{hospital.street_address}, {hospital.city}, {hospital.state} {hospital.zip_code}</p>
+      <b>Phone Number:</b>
+      <p>{formatPhone(hospital.phone)}</p>
     </div>
   )
 }

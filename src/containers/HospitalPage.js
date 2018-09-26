@@ -4,9 +4,25 @@ import { connect } from "react-redux"
 import ReviewsContainer from './ReviewsContainer'
 import HospitalDetail from '../components/HospitalDetail'
 import AddReviewContainer from './AddReviewContainer'
+import ProcedureTable from '../components/ProcedureTable'
+import { ROOT_URL } from '../redux/actions'
 
 
 class HospitalPage extends React.Component {
+
+  state = {
+    hospital: null
+  }
+
+  componentDidMount() {
+    fetch(ROOT_URL + `/hospitals/${this.props.id}`)
+      .then(r => r.json())
+      .then(json => {
+        this.setState({
+          hospital: json
+        })
+      })
+  }
 
   hospitalName = (hospital) => {
     return hospital.name.toLowerCase().split(" ").map(word => {
@@ -17,13 +33,15 @@ class HospitalPage extends React.Component {
   }
 
   render() {
-    let hospital = this.props.hospitals.find(h => h.id === parseInt(this.props.id, 10))
-    if (this.props.hospitals.length > 0 && hospital) {
+    let hospital = this.state.hospital
+    if (this.state.hospital) {
       return (
         <div id="profile">
           <h2><i className="hospital outline icon"/> {this.hospitalName(hospital)}</h2>
           <div className="ui divider"></div>
             <HospitalDetail hospital={hospital} />
+          <div className="ui divider"></div>
+            <ProcedureTable procedures={hospital.hospital_procedures} />
           <div className="ui divider"></div>
             <AddReviewContainer id={this.props.id}/>
           <div className="ui divider"></div>
