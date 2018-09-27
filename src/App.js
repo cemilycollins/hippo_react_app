@@ -11,6 +11,7 @@ import Profile from './components/Profile'
 import HospitalPage from './containers/HospitalPage'
 import OtherUserProfile from './components/OtherUserProfile'
 import MapPlacesSearch from './components/MapPlacesSearch'
+import ProcedurePage from './containers/ProcedurePage'
 import { ROOT_URL, updateUser, fetchHospitals} from './redux/actions'
 
 
@@ -40,6 +41,7 @@ class App extends Component {
           <Route exact path="/search" component={HospitalContainer} />
           <Route exact path='/login' component={LoginForm} />
           <Route exact path='/signup' component={CreateUserForm} />
+          <Route path='/procedures/:procedure_id' render={props => <ProcedurePage id={props.match.params.procedure_id}/>} />
           <Route path='/hospitals/:hospital_id' render={props => <HospitalPage id={props.match.params.hospital_id}/>} />
           {this.props.user ? <Route exact path={`/users/${this.props.user.id}`} render={() => <Profile user={this.props.user}/>} /> : null }
           <Route path='/users/:user_id' render={props => <OtherUserProfile id={props.match.params.user_id}/>} />

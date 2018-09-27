@@ -59,9 +59,4 @@ class Login extends React.Component {
 }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  push: (url) => push(url),
-  updateUser
-}, dispatch)
-
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(null, {push, updateUser})(Login)

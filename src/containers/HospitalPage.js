@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 
 import ReviewsContainer from './ReviewsContainer'
 import HospitalDetail from '../components/HospitalDetail'
-import ProcedureTable from '../components/ProcedureTable'
+import ProcedureCardsContainer from './ProcedureCardsContainer'
 import CreateReviewModal from '../components/CreateReviewModal'
 import { ROOT_URL } from '../redux/actions'
 
@@ -44,12 +44,17 @@ class HospitalPage extends React.Component {
             <CreateReviewModal id={this.props.id} hospitalName={this.hospitalName(hospital)}/>
             {hospital.reviews.length > 0 ? <ReviewsContainer reviews={hospital.reviews}/> : <h2>Be the first to review this hospital!</h2> }
           <div className="ui divider"></div>
-            <ProcedureTable procedures={hospital.hospital_procedures} />
-
+            <ProcedureCardsContainer procedures={hospital.hospital_procedures} />
         </div>
       )
     } else {
-      return null
+      return (
+        <div className="loader">
+          <div className="ui active dimmer">
+            <div className="ui loader"></div>
+          </div>
+        </div>
+      )
     }
   }
 }

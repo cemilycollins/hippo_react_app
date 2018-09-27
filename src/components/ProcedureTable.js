@@ -12,17 +12,17 @@ const ProcedureTable = props => {
     <table className="ui celled striped table">
       <thead>
         <tr>
-          <th colspan="5">This Hospital</th>
-          <th colspan="2">National</th>
+          <th colSpan="5">This Hospital</th>
+          <th colSpan="2">National</th>
         </tr>
         <tr>
-          <th colspan="1">Procedure Name</th>
-          <th colspan="1">Average Charge</th>
-          <th colspan="1">Average Medicare Payment</th>
-          <th colspan="1">Average Total Payment</th>
-          <th colspan="1"># Patients Treated (2016)</th>
-          <th colspan="1">National Avg. Cost</th>
-          <th colspan="1"># Hospitals Performing This Procedure</th>
+          <th colSpan="1">Procedure Name</th>
+          <th colSpan="1">Average Charge</th>
+          <th colSpan="1">Average Medicare Payment</th>
+          <th colSpan="1">Average Total Payment</th>
+          <th colSpan="1"># Patients Treated (2016)</th>
+          <th colSpan="1">National Avg. Cost</th>
+          <th colSpan="1"># Hospitals Performing This Procedure</th>
         </tr>
       </thead>
       <tbody>

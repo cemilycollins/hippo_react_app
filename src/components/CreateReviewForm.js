@@ -31,6 +31,8 @@ class CreateReviewForm extends React.Component {
     e.preventDefault()
     if (this.state.rating === 0 || this.state.body === "") {
       alert("Please fill out all fields before submitting the form")
+    } else if (this.state.date > new Date()) {
+      alert("Date of visit must be today or in the past")
     } else {
       fetch(ROOT_URL + '/reviews',{
         method:'POST',

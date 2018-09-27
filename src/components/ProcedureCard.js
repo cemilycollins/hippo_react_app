@@ -1,10 +1,11 @@
 import React from 'react'
 
 const ProcedureCard = props => {
+  const p = props.procedure.procedure
   return (
     <div className="ui card">
       <div className="content">
-        <div className="header">Project Timeline</div>
+        <div className="header">{p.name}</div>
       </div>
       <div className="content">
         <h4 className="ui sub header">Activity</h4>

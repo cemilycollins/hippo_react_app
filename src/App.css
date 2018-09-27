@@ -14,19 +14,30 @@ div.home_top_header {
 .ui.small.image {
   float: left;
   padding: 10px;
-  width: 25%;
 }
 
 .ui.purple.button {
   background-color: #733BBF;
 }
 
-.ui.button{
+.form .ui.button{
   margin-top: 20px;
+}
+
+.ui.button {
+  margin-bottom: 15px;
+}
+
+.ui.cards {
+  width: 100%;
 }
 
 ui.modal {
   top: 10%;
+}
+div.loader {
+  width: 100%;
+  height: 100%;
 }
 
 .ui.header {
@@ -51,7 +62,7 @@ ui.modal {
 }
 
 #profileSegment {
-  min-height: 200px;
+  min-height: 175px;
 }
 
 .hospitalContainer {

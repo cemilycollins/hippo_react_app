@@ -11,7 +11,7 @@ function formatStars(rating) {
   }
   if (arr.length < 5) {
     for (let i = arr.length; i < 5 ; i++) {
-      arr.push(<i className="star outline icon" />)
+      arr.push(<i className="grey star icon" />)
     }
   }
   return arr
