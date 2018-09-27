@@ -24,14 +24,14 @@ class Profile extends React.Component {
       return (
         <div id="profile">
           <h2>My Profile</h2>
-          <div className="ui teal segment">
-            <div className="three wide column">
+          <div className="ui teal segment" id="profileSegment">
+            <div className="four wide column">
               <img className="ui small circular image" src={user.profile_pic} alt="profile"/>
             </div>
-            <div className="nine wide column">
-              <h2>{user.name} <i onClick={this.handleClick} className="ui edit icon" /></h2>
-              <p><b>{user.city}, {user.state}</b></p>
-              <p>{user.email}</p>
+            <div className="eight wide column">
+              <h2>{user.name} <i onClick={this.handleClick} className="ui edit outline icon" /></h2>
+              <p><i className="ui map pin icon"/> {user.city}, {user.state}</p>
+              <p><i className="ui envelope outline icon"/>{user.email}</p>
             </div>
           </div>
           {this.state.editUserClicked ? <EditUserForm hideForm={this.handleClick} /> : null}

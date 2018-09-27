@@ -3,6 +3,9 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
+import { updateMapCenter } from '../redux/actions'
+import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
 
 class MapPlacesSearch extends React.Component {
   constructor(props) {
@@ -17,19 +20,24 @@ class MapPlacesSearch extends React.Component {
   handleSelect = address => {
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
-      .then(latLng => console.log('Success', latLng))
+      .then(latLng => {
+        this.props.updateMapCenter({center: latLng, zoom: 12})
+        this.props.push('/hospitals')
+      })
       .catch(error => console.error('Error', error));
   };
 
   render() {
     return (
+      <div className="home_top_header" >
+      <div id="placesSearch">
       <PlacesAutocomplete className="ui form"
         value={this.state.address}
         onChange={this.handleChange}
         onSelect={this.handleSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div className="ui inline form field" id="placesSearch">
+          <div className="ui inline form field" >
             <h2 className="search label">Search hospitals near you</h2>
             <input
               {...getInputProps({
@@ -62,8 +70,10 @@ class MapPlacesSearch extends React.Component {
           </div>
         )}
       </PlacesAutocomplete>
+      </div>
+      </div>
     );
   }
 }
 
-export default MapPlacesSearch
+export default connect(null, {updateMapCenter, push})(MapPlacesSearch)

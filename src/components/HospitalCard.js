@@ -30,8 +30,8 @@ const HospitalCard = props => {
   return (
     <div onClick={() => props.push(`/hospitals/${hospital.id}`)} className="ui hospital segment" >
     <div className='ui content'>
-      <div className='ui black header' id='name'>{name}</div>
-      <div className='meta'>{formatStars(hospital.rating_average)} ({hospital.total_reviews} {hospital.total_reviews === 1 ? "review" : "reviews"})</div>
+      <div className='ui hospital header' id='name'>{name}</div>
+      <p>{formatStars(hospital.rating_average)} ({hospital.total_reviews} {hospital.total_reviews === 1 ? "review" : "reviews"})</p>
       <div className='description'>
         <p><b>Address:</b> {hospital.street_address}</p>
         <p>{hospital.city}, {hospital.state} {hospital.zip_code}</p>

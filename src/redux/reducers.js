@@ -68,19 +68,26 @@ function userReducer(state = null, action) {
   }
 }
 
-function usersReducer(state = [], action) {
+function mapReducer(state = {
+  center: {
+    lat: 39.8283,
+    lng: -98.5795
+  },
+  zoom: 4
+}, action) {
   switch (action.type) {
-    case "FETCH_USERS":
-      return action.users
+    case "UPDATE_CENTER":
+      return action.props
     default:
       return state
   }
 }
 
+
 const rootReducer = combineReducers({
   hospitals: hospitalsReducer,
   user: userReducer,
-  users: usersReducer
+  mapCenter: mapReducer
 })
 
 export default rootReducer

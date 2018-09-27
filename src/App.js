@@ -10,7 +10,7 @@ import LoginForm from './components/LoginForm'
 import Profile from './components/Profile'
 import HospitalPage from './containers/HospitalPage'
 import OtherUserProfile from './components/OtherUserProfile'
-import { ROOT_URL, updateUser, fetchHospitals, fetchUsers } from './redux/actions'
+import { ROOT_URL, updateUser, fetchHospitals} from './redux/actions'
 
 
 class App extends Component {
@@ -18,9 +18,6 @@ class App extends Component {
   componentDidMount() {
     if (this.props.hospitals.length === 0) {
       this.props.fetchHospitals()
-    }
-    if (this.props.users.length === 0) {
-      this.props.fetchUsers()
     }
     if (localStorage.getItem('token')) {
       fetch(ROOT_URL + '/me', {
@@ -38,7 +35,7 @@ class App extends Component {
       <div className="App">
         <NavBar user={this.props.user}/>
         <Switch>
-          <Route exact path='/' component={HospitalContainer} />
+          <Route path='/' component={HospitalContainer} />
           <Route exact path='/login' component={LoginForm} />
           <Route exact path='/signup' component={CreateUserForm} />
           <Route path='/hospitals/:hospital_id' render={props => <HospitalPage id={props.match.params.hospital_id}/>} />
@@ -57,4 +54,4 @@ const mapStateToProps = (state) => ({
   users: state.users
 })
 
-export default withRouter(connect(mapStateToProps, {fetchHospitals, updateUser, fetchUsers})(App))
+export default withRouter(connect(mapStateToProps, {fetchHospitals, updateUser})(App))

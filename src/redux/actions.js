@@ -37,10 +37,6 @@ export function deleteReview(review) {
   return fetchHospital("DELETE_REVIEW", review)
 }
 
-export function fetchUsers() {
-  return function(dispatch) {
-    fetch(ROOT_URL + "/users")
-      .then(r => r.json())
-      .then(json => dispatch({type: "FETCH_USERS", users: json}))
-  }
+export function updateMapCenter(props) {
+  return {type: "UPDATE_CENTER", props: props }
 }
