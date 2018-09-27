@@ -5,6 +5,7 @@ import ReviewsContainer from './ReviewsContainer'
 import HospitalDetail from '../components/HospitalDetail'
 import AddReviewContainer from './AddReviewContainer'
 import ProcedureTable from '../components/ProcedureTable'
+import CreateReviewModal from '../components/CreateReviewModal'
 import { ROOT_URL } from '../redux/actions'
 
 
@@ -38,10 +39,9 @@ class HospitalPage extends React.Component {
       return (
         <div id="profile">
           <h2><i className="hospital outline icon"/> {this.hospitalName(hospital)}</h2>
-          <div className="ui right floated purple button">Hi there!
-          </div>
           <div className="ui divider"></div>
             <HospitalDetail hospital={hospital} />
+            <CreateReviewModal id={this.props.id}/>
           <div className="ui divider"></div>
             <ProcedureTable procedures={hospital.hospital_procedures} />
           <div className="ui divider"></div>

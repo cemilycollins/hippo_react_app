@@ -1,14 +1,18 @@
 import React from 'react'
-import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import { Button, Header, Modal } from 'semantic-ui-react'
 import CreateReviewForm from './CreateReviewForm'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-const CreateReviewModal = () => (
-  <Modal trigger={<Button>Add Review</Button>}>
-    <Modal.Header>Select a Photo</Modal.Header>
+const CreateReviewModal = (props) => (
+  <Modal trigger={<Button className="ui purple button">Add Review</Button>}>
+    {props.id && props.user ? <div><Modal.Header>Your New Review</Modal.Header>
     <Modal.Content>
-      <CreateReviewForm id={this.props.id}/>
-    </Modal.Content>
+      <CreateReviewForm id={props.id}/>
+    </Modal.Content></div> : <Modal.Content><h3 style={{color: "red"}}>Please <Link to='/login'>Log In</Link> to add a review!</h3></Modal.Content>}
   </Modal>
 )
 
-export default CreateReviewModal
+const mapStateToProps = ({user}) => ({user})
+
+export default connect(mapStateToProps)(CreateReviewModal)

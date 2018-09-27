@@ -20,7 +20,7 @@ class Profile extends React.Component {
 
   render () {
     const user = this.props.user
-    if (user) {
+    if (user.name) {
       return (
         <div id="profile">
           <h2>My Profile</h2>
@@ -36,7 +36,7 @@ class Profile extends React.Component {
           </div>
           {this.state.editUserClicked ? <EditUserForm hideForm={this.handleClick} /> : null}
           <div className="ui divider"></div>
-          {user.reviews.length > 0 ? <ReviewsContainer reviews={user.reviews}/> : <h2>You don't have any reviews yet! <Link to="/">Click here</Link> to see hospitals.</h2> }
+          {user.reviews.length > 0 && user.reviews[0].hospital ? <ReviewsContainer reviews={user.reviews}/> : <h2>You don't have any reviews yet! <Link to="/">Click here</Link> to see hospitals.</h2> }
         </div>
       )
     } else {
