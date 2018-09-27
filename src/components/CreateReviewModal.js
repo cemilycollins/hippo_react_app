@@ -17,7 +17,11 @@ class CreateReviewModal extends React.Component {
 
   render() {
   return (
-    <Modal trigger={<Button onClick={this.handleModal} className="ui purple button" style={{'margin-bottom': "15px"}}>Add Review</Button>}>
+    <Modal trigger={<Button onClick={this.handleModal}
+      open={this.state.modalOpen}
+      onClose={() => {this.setState({modalOpen: false})}}
+      className="ui purple button"
+      style={{'margin-bottom': "15px"}}>Add Review</Button>}>
       {this.props.id && this.props.user ? <div>
       <Modal.Content>
         <CreateReviewForm id={this.props.id} hospitalName={this.props.hospitalName} closeModal={this.handleModal}/>

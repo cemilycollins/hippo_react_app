@@ -1,5 +1,6 @@
 import React from 'react'
 import { ROOT_URL } from '../redux/actions'
+import ProcedureTable from '../components/ProcedureTable'
 
 class ProcedurePage extends React.Component {
 
@@ -21,6 +22,7 @@ class ProcedurePage extends React.Component {
     if (this.state.procedure) {
       return (
         <div>
+          <ProcedureTable procedure={this.state.procedure} hospital_procedures={this.state.procedure.hospital_procedures} />
         </div>
       )
     } else {

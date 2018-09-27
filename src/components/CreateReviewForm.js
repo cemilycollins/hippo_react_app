@@ -52,7 +52,7 @@ class CreateReviewForm extends React.Component {
       .then(res=> res.json())
       .then(json=> {
         if (json.date) {
-          this.props.handleModal()
+          this.props.closeModal()
           this.props.addReview(json)
         } else {
           alert(json.error)
