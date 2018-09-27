@@ -50,7 +50,7 @@ class CreateReviewForm extends React.Component {
       .then(res=> res.json())
       .then(json=> {
         if (json.date) {
-          this.props.hideForm()
+          this.props.handleModal()
           this.props.addReview(json)
         } else {
           alert(json.error)
@@ -63,8 +63,8 @@ class CreateReviewForm extends React.Component {
     return (
       <div style={{width: '75%', margin: 'auto'}}>
       <p></p>
-      <h2>Your New Review</h2>
-        <form onSubmit={this.handleSubmit} className="ui form" >
+        <form onSubmit={this.handleSubmit} className="ui form" style={{padding: "20px"}}>
+          <h2>New Review For {this.props.hospitalName}</h2>
           <div className="ui inline form field">
             <label htmlFor="rating">Rating:</label>
             <input className="ui checkbox" type="checkbox" onChange={this.handleChange} value={1} checked={this.state.rating === 1} name="rating" />

@@ -10,6 +10,7 @@ import LoginForm from './components/LoginForm'
 import Profile from './components/Profile'
 import HospitalPage from './containers/HospitalPage'
 import OtherUserProfile from './components/OtherUserProfile'
+import MapPlacesSearch from './components/MapPlacesSearch'
 import { ROOT_URL, updateUser, fetchHospitals} from './redux/actions'
 
 
@@ -35,7 +36,8 @@ class App extends Component {
       <div className="App">
         <NavBar user={this.props.user}/>
         <Switch>
-          <Route path='/' component={HospitalContainer} />
+          <Route exact path="/" component={MapPlacesSearch} />
+          <Route exact path="/search" component={HospitalContainer} />
           <Route exact path='/login' component={LoginForm} />
           <Route exact path='/signup' component={CreateUserForm} />
           <Route path='/hospitals/:hospital_id' render={props => <HospitalPage id={props.match.params.hospital_id}/>} />

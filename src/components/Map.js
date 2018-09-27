@@ -30,8 +30,8 @@ class Map extends React.Component {
     } else {
       return (
         <div id="map">
-          <div class="ui active dimmer">
-            <div class="ui loader"></div>
+          <div className="ui active dimmer">
+            <div className="ui loader"></div>
           </div>
         </div>
       )

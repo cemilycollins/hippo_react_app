@@ -62,9 +62,8 @@ class ReviewCard extends React.Component {
   }
 
   render() {
-  if (this.props.users.length > 0) {
+  if (this.props.review.hospital) {
     const review = this.props.review
-    const reviewUser = this.props.users.find(u => u.id === review.user_id)
     return (
       <div className="ui card">
         <div className='ui content'>
@@ -74,7 +73,7 @@ class ReviewCard extends React.Component {
           </div>
           <Link to={`/hospitals/${review.hospital_id}`} className='meta'>{this.formatName(review.hospital.name)}</Link>
           <div className='description'>
-            <p><b>Reviewer:</b> <Link to={`/users/${reviewUser.id}`}>{reviewUser.name}</Link></p>
+            <p><b>Reviewer:</b> <Link to={`/users/${review.user_id}`}>{review.user.name}</Link></p>
             <p><b>Date:</b> {review.date}</p>
             <p>"{review.body}"</p>
           </div>
