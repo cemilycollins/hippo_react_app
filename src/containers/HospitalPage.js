@@ -11,7 +11,14 @@ import { ROOT_URL, setShowHospital } from '../redux/actions'
 class HospitalPage extends React.Component {
 
   componentDidMount() {
-    this.props.setShowHospital(this.props.id)
+    if (this.props.hospitals.length > 0 && this.props.hospitals.find(h => h.id === parseInt(this.props.id, 10))) {
+      this.props.setShowHospital(this.props.hospitals.find(h => h.id === parseInt(this.props.id, 10)))
+    } else {
+      fetch(ROOT_URL + `/hospitals/${this.props.id}`)
+      .then(r => r.json())
+      .then(json => this.props.setShowHospital(json))
+    }
+    window.scrollTo(0,0)
   }
 
   hospitalName = (hospital) => {
@@ -24,7 +31,7 @@ class HospitalPage extends React.Component {
 
   render() {
     let hospital = this.props.showHospital
-    if (this.props.showHospital && this.props.showHospital.name) {
+    if (this.props.showHospital && this.props.showHospital.id === parseInt(this.props.id, 10)) {
       return (
         <div id="profile">
           <h2><i className="hospital outline icon"/> {this.hospitalName(hospital)}</h2>
@@ -49,6 +56,6 @@ class HospitalPage extends React.Component {
   }
 }
 
-const mapStateToProps = ({showHospital}) => ({showHospital})
+const mapStateToProps = ({showHospital, hospitals}) => ({showHospital, hospitals})
 
 export default connect(mapStateToProps, {setShowHospital})(HospitalPage)

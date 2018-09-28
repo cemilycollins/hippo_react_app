@@ -81,6 +81,11 @@ div.loader {
   width: 90%;
   margin: auto;
   padding: 20px;
+  position: relative;
+}
+
+div#marker {
+  z-index: -1;
 }
 
 #placesSearch {
@@ -88,6 +93,12 @@ div.loader {
   margin: 0 auto;
   vertical-align: center;
   padding-top: 230px;
+}
+
+#placesSearch2 {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 15px;
 }
 
 h2.search.label {

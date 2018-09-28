@@ -18,9 +18,6 @@ import { ROOT_URL, updateUser, fetchHospitals} from './redux/actions'
 class App extends Component {
 
   componentDidMount() {
-    if (this.props.hospitals.length === 0) {
-      this.props.fetchHospitals()
-    }
     if (localStorage.getItem('token')) {
       fetch(ROOT_URL + '/me', {
         method: "GET",
@@ -37,7 +34,7 @@ class App extends Component {
       <div className="App">
         <NavBar user={this.props.user}/>
         <Switch>
-          <Route exact path="/" component={MapPlacesSearch} />
+          <Route exact path="/" render={() => <MapPlacesSearch home={true} />} />
           <Route exact path="/search" component={HospitalContainer} />
           <Route exact path='/login' component={LoginForm} />
           <Route exact path='/signup' component={CreateUserForm} />

@@ -21,7 +21,7 @@ class MapPlacesSearch extends React.Component {
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng => {
-        this.props.updateMapCenter({center: latLng, zoom: 12})
+        this.props.updateMapCenter({center: latLng, zoom: 10})
         this.props.push('/search')
       })
       .catch(error => console.error('Error', error));
@@ -29,8 +29,8 @@ class MapPlacesSearch extends React.Component {
 
   render() {
     return (
-      <div className="home_top_header" >
-      <div id="placesSearch">
+      <div className={this.props.home ? "home_top_header" : "random_class"} >
+      <div id={this.props.home ? "placesSearch" : "placesSearch2"}>
       <PlacesAutocomplete className="ui form"
         value={this.state.address}
         onChange={this.handleChange}
