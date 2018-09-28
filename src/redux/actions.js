@@ -8,9 +8,16 @@ function fetchHospital(action, review) {
   }
 }
 
-export function fetchHospitals() {
+export function fetchHospitals(latlng) {
   return function(dispatch) {
-    fetch(ROOT_URL + "/hospitals")
+    fetch(ROOT_URL + "/hospitalquery", {
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({...latlng, range: 0.5})
+    })
       .then(r => r.json())
       .then(json => dispatch({type: "FETCH_HOSPITALS", hospitals: json}))
   }

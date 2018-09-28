@@ -39,9 +39,26 @@ class HospitalPage extends React.Component {
             <HospitalDetail hospital={hospital} />
           <div className="ui divider"></div>
             <CreateReviewModal id={this.props.id} hospitalName={this.hospitalName(hospital)}/>
-            {hospital.reviews.length > 0 ? <ReviewsContainer reviews={hospital.reviews}/> : <h2>Be the first to review this hospital!</h2> }
+            {hospital.reviews ? null :
+              <div style={{height: '300px', width: '100%'}}>
+                <div className="loader">
+                  <div className="ui active dimmer">
+                    <div className="ui loader"></div>
+                  </div>
+                </div>
+              </div>
+            }
+            {hospital.reviews && hospital.reviews.length > 0 ? <ReviewsContainer reviews={hospital.reviews}/> : <h2>Be the first to review this hospital!</h2> }
           <div className="ui divider"></div>
-            <ProcedureCardsContainer procedures={hospital.hospital_procedures} />
+            {hospital.hospital_procedures ? <ProcedureCardsContainer procedures={hospital.hospital_procedures} /> :
+              <div style={{height: '300px', width: '100%'}}>
+                <div className="loader">
+                  <div className="ui active dimmer">
+                    <div className="ui loader"></div>
+                  </div>
+                </div>
+              </div>
+            }
         </div>
       )
     } else {

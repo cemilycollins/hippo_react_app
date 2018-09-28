@@ -1,5 +1,7 @@
 import React from 'react'
 import {Map, Marker, GoogleApiWrapper, InfoWindow} from 'google-maps-react'
+import { push } from 'connected-react-router'
+import { connect } from 'react-redux'
 
 export class MapContainer extends React.Component {
 
@@ -65,7 +67,8 @@ export class MapContainer extends React.Component {
 
             {this.props.hospitals.map(h => <Marker
               onClick={this.onMarkerClick}
-              name={this.hospitalName(h.name)}
+              name={h.name}
+              url={`/hospitals/${h.id}`}
               value={this.formatStars(h.rating_average)}
               position={{lat: h.latitude, lng: h.longitude}}
             />)}
@@ -74,7 +77,7 @@ export class MapContainer extends React.Component {
               marker={this.state.activeMarker}
               visible={this.state.showingInfoWindow}>
                 <div>
-                  <h4>{this.state.selectedPlace.name}</h4>
+                  <h4 onClick={() => this.props.push(this.state.selectedPlace.url)}>{this.state.selectedPlace.name}</h4>
                   {this.state.selectedPlace.value}
                 </div>
             </InfoWindow>
@@ -94,6 +97,6 @@ export class MapContainer extends React.Component {
   }
 }
 
-export default GoogleApiWrapper((props) =>({
+export default connect(null, {push})(GoogleApiWrapper((props) =>({
   apiKey: "AIzaSyBaLcXDzSMz-u-TmpYGp7Cv4NRrRbEo6uM"
-}))(MapContainer)
+}))(MapContainer))

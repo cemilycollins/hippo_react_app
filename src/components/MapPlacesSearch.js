@@ -3,7 +3,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
-import { updateMapCenter } from '../redux/actions'
+import { updateMapCenter, fetchHospitals } from '../redux/actions'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 
@@ -22,6 +22,7 @@ class MapPlacesSearch extends React.Component {
       .then(results => getLatLng(results[0]))
       .then(latLng => {
         this.props.updateMapCenter({center: latLng, zoom: 10})
+        this.props.fetchHospitals(latLng)
         this.props.push('/search')
       })
       .catch(error => console.error('Error', error));
@@ -76,4 +77,4 @@ class MapPlacesSearch extends React.Component {
   }
 }
 
-export default connect(null, {updateMapCenter, push})(MapPlacesSearch)
+export default connect(null, {updateMapCenter, push, fetchHospitals})(MapPlacesSearch)

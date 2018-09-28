@@ -84,7 +84,7 @@ class ProcedureContainer extends React.Component {
           <div>
             <h2 style={{"text-align": "center"}}>Procedures and Pricing</h2>
             <form className="ui form">
-              <input type='text' value={this.state.searchTerm} onChange={this.handleChange}
+              <input type='text' value={this.state.searchTerm}  onChange={this.handleChange} />
             </form>
             <h3>Showing procedures {this.state.firstIndex + 1} to {this.state.lastIndex} of {this.state.filteredProcedures.length}</h3>
             <div className="ui left aligned button" onClick={this.handlePrev}><i className="caret left icon"/> Prev</div>
