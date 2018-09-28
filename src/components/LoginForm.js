@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux"
 import { ROOT_URL, updateUser } from "../redux/actions"
-import { bindActionCreators } from 'redux'
 import { push } from 'connected-react-router'
 import { Link } from 'react-router-dom'
 

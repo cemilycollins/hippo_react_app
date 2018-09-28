@@ -40,3 +40,13 @@ export function deleteReview(review) {
 export function updateMapCenter(props) {
   return {type: "UPDATE_CENTER", props: props }
 }
+
+export function setShowHospital(hospital_id) {
+  return function(dispatch) {
+    fetch(ROOT_URL + `/hospitals/${hospital_id}`)
+      .then(r => r.json())
+      .then(json => {
+        dispatch({type: "SET_SHOW_HOSPITAL", hospital: json})
+      })
+  }
+}

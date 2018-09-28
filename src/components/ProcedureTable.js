@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 function formatDollars(num) {
   return (num).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
@@ -32,7 +33,7 @@ const ProcedureTable = props => {
       <tbody>
         {procedures.map(p =>
           <tr>
-            <td>{p.hospital.name} - {p.hospital.name}, {p.hospital.state}</td>
+            <td><Link to={`/hospitals/${p.hospital.id}`}>{p.hospital.name} - {p.hospital.city}, {p.hospital.state}</Link></td>
             <td>{p.total_discharges}</td>
             <td>${formatDollars(p.average_covered_charges)}</td>
             <td>{percent(p.average_covered_charges, procedure.nat_avg_cost)}</td>

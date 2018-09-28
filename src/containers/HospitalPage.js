@@ -5,23 +5,13 @@ import ReviewsContainer from './ReviewsContainer'
 import HospitalDetail from '../components/HospitalDetail'
 import ProcedureCardsContainer from './ProcedureCardsContainer'
 import CreateReviewModal from '../components/CreateReviewModal'
-import { ROOT_URL } from '../redux/actions'
+import { ROOT_URL, setShowHospital } from '../redux/actions'
 
 
 class HospitalPage extends React.Component {
 
-  state = {
-    hospital: null
-  }
-
   componentDidMount() {
-    fetch(ROOT_URL + `/hospitals/${this.props.id}`)
-      .then(r => r.json())
-      .then(json => {
-        this.setState({
-          hospital: json
-        })
-      })
+    this.props.setShowHospital(this.props.id)
   }
 
   hospitalName = (hospital) => {
@@ -33,8 +23,8 @@ class HospitalPage extends React.Component {
   }
 
   render() {
-    let hospital = this.state.hospital
-    if (this.state.hospital) {
+    let hospital = this.props.showHospital
+    if (this.props.showHospital && this.props.showHospital.name) {
       return (
         <div id="profile">
           <h2><i className="hospital outline icon"/> {this.hospitalName(hospital)}</h2>
@@ -59,6 +49,6 @@ class HospitalPage extends React.Component {
   }
 }
 
-const mapStateToProps = ({hospitals}) => ({hospitals})
+const mapStateToProps = ({showHospital}) => ({showHospital})
 
-export default connect(mapStateToProps)(HospitalPage)
+export default connect(mapStateToProps, {setShowHospital})(HospitalPage)

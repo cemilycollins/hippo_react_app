@@ -83,11 +83,27 @@ function mapReducer(state = {
   }
 }
 
+function showHospitalReducer(state = null, action) {
+  switch (action.type) {
+    case "ADD_REVIEW":
+      return action.hospital
+    case "EDIT_REVIEW":
+      return action.hospital
+    case "DELETE_REVIEW":
+      return action.hospital
+    case "SET_SHOW_HOSPITAL":
+      return action.hospital
+    default:
+      return state
+  }
+}
+
 
 const rootReducer = combineReducers({
   hospitals: hospitalsReducer,
   user: userReducer,
-  mapCenter: mapReducer
+  mapCenter: mapReducer,
+  showHospital: showHospitalReducer
 })
 
 export default rootReducer

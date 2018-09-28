@@ -1,4 +1,7 @@
 import React from 'react'
+import { push } from 'connected-react-router'
+import { connect } from 'react-redux'
+
 
 function formatDollars(num) {
   return (num).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
@@ -8,7 +11,7 @@ const ProcedureCard = props => {
   const p = props.procedure
   const percent = parseInt(((p.average_covered_charges / p.procedure.nat_avg_cost) * 100), 10)
   return (
-    <div className="ui card">
+    <div className="ui card" onClick={() => props.push(`/procedures/${p.procedure.id}`)}>
       <div className="content">
         <div className="header">{p.procedure.name}</div>
       </div>
@@ -65,4 +68,4 @@ const ProcedureCard = props => {
   )
 }
 
-export default ProcedureCard
+export default connect(null, {push})(ProcedureCard)

@@ -1,5 +1,6 @@
 import React from "react"
 import { connect } from 'react-redux'
+import { Modal } from 'semantic-ui-react'
 import { ROOT_URL, addReview } from '../redux/actions'
 
 
@@ -88,7 +89,7 @@ class CreateReviewForm extends React.Component {
             <label htmlFor="body">Body</label>
             <textarea onChange={this.handleBodyChange} name="body" placeholder="Type your review here..." />
           </div>
-          <input className="ui purple button" type="submit" name="Submit"/>
+            <input className="ui purple button" type="submit" name="Submit" />
         </form>
       </div>
     )
