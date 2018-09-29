@@ -41,12 +41,20 @@ class ProcedureContainer extends React.Component {
 
   handleChange = (e) => {
     let filtered = this.props.procedures.filter(p => (
-      p.procedure.name.toLowerCase().includes(e.target.value.toLowerCase())
+      p.procedure_name.toLowerCase().includes(e.target.value.toLowerCase())
     ))
+    let last = 15
+
+    if (filtered.length < 15) {
+      last = filtered.length
+    }
 
     this.setState({
       searchTerm: e.target.value,
-      filteredProcedures: filtered
+      filteredProcedures: filtered,
+      procedures: filtered.slice(0,15),
+      firstIndex: 0,
+      lastIndex: last
     })
   }
 
@@ -90,7 +98,7 @@ class ProcedureContainer extends React.Component {
             <div className="ui left aligned button" onClick={this.handlePrev}><i className="caret left icon"/> Prev</div>
             <div className="ui right floated button" onClick={this.handleNext}>Next <i className="caret right icon"/></div>
             <div className="ui cards">
-              {this.state.procedures.map(procedure => <ProcedureCard procedure={procedure}/>)}
+              {this.state.filteredProcedures.map(procedure => <ProcedureCard procedure={procedure}/>)}
             </div></div> : <h2>There are currently no procedures reported for this hospital</h2>
         }
       </div>

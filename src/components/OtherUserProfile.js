@@ -11,13 +11,21 @@ class OtherUserProfile extends React.Component {
       user: null
     }
   }
+  _isMounted = false
 
   componentDidMount() {
-    fetch(ROOT_URL + `/users/${this.props.id}`)
-      .then(r => r.json())
-      .then(json => this.setState({
-        user: json
-      }))
+    this._isMounted = true
+    if (this._isMounted) {
+      fetch(ROOT_URL + `/users/${this.props.id}`)
+        .then(r => r.json())
+        .then(json => this.setState({
+          user: json
+        }))
+    }
+  }
+
+  componentDidUnmount() {
+    this._isMounted = false
   }
 
   render() {

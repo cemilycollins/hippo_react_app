@@ -9,11 +9,11 @@ function formatDollars(num) {
 
 const ProcedureCard = props => {
   const p = props.procedure
-  const percent = parseInt(((p.average_covered_charges / p.procedure.nat_avg_cost) * 100), 10)
+  const percent = Math.abs(parseInt(((p.average_covered_charges / p.nat_avg_cost) * 100), 10))
   return (
-    <div className="ui card" onClick={() => props.push(`/procedures/${p.procedure.id}`)}>
+    <div className="ui card" onClick={() => props.push(`/procedures/${p.procedure_id}`)}>
       <div className="content">
-        <div className="header">{p.procedure.name}</div>
+        <div className="header">{p.procedure_name}</div>
       </div>
       <div className="content">
       <h4 className="ui sub header" style={{'font-size': "12pt"}}>Pricing</h4>
@@ -29,7 +29,7 @@ const ProcedureCard = props => {
           <div className="content">
             <div className="summary">
             <i className="globe icon"></i>
-            <a>${formatDollars(p.procedure.nat_avg_cost)}</a> national average charge
+            <a>${formatDollars(p.nat_avg_cost)}</a> national average charge
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@ const ProcedureCard = props => {
             <div className="content">
               <div className="summary">
               <i className="hospital outline icon"></i>
-              <a>{p.procedure.total_hospitals - 1} other hospitals</a> have this procedure
+              <a>{p.total_hospitals - 1} other hospitals</a> have this procedure
               </div>
             </div>
           </div>

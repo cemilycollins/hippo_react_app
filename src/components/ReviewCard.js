@@ -62,7 +62,7 @@ class ReviewCard extends React.Component {
   }
 
   render() {
-  if (this.props.review.hospital) {
+  if (this.props.review) {
     const review = this.props.review
     return (
       <div className="ui card">
@@ -71,9 +71,9 @@ class ReviewCard extends React.Component {
             {this.formatStars(review.rating)}
             {this.props.user && this.props.user.id === review.user_id ? <i onClick={this.handleClick} className="right aligned edit outline icon" /> : null }
           </div>
-          <Link to={`/hospitals/${review.hospital_id}`} className='meta'>{this.formatName(review.hospital.name)}</Link>
+          <Link to={`/hospitals/${review.hospital_id}`} className='meta'>{this.formatName(review.hospital_name)}</Link>
           <div className='description'>
-            <p><b>Reviewer:</b> <Link to={`/users/${review.user_id}`}>{review.user.name}</Link></p>
+            <p><b>Reviewer:</b> <Link to={`/users/${review.user_id}`}>{review.user_name}</Link></p>
             <p><b>Date:</b> {review.date}</p>
             <p>"{review.body}"</p>
           </div>
