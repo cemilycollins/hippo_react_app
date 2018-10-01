@@ -8,6 +8,8 @@ class ProcedurePage extends React.Component {
     procedure: null,
     filteredHPs: null,
     searchTerm: "",
+    sortLowToHigh: false,
+    sortHighToLow: false
   }
 
   componentDidMount() {
@@ -28,7 +30,7 @@ class ProcedurePage extends React.Component {
   handleChange = (e) => {
     let value = e.target.value.toLowerCase()
     let filtered = this.state.procedure.hospital_procedures.filter(hp => (
-      hp.hospital_name.toLowerCase().includes(value) || hp.state.toLowerCase().includes(value) || hp.city.toLowerCase().includes(value)
+      hp.hospital.name.toLowerCase().includes(value) || hp.hospital.state.toLowerCase().includes(value) || hp.hospital.city.toLowerCase().includes(value)
     ))
     this.setState({
       filteredHPs: filtered,
@@ -36,8 +38,22 @@ class ProcedurePage extends React.Component {
     })
   }
 
-  handleSort = () => {
+  handleSortLowToHigh = (e) => {
+    let sort = this.state.filteredHPs.sort( (a,b) => a.average_covered_charges - b.average_covered_charges)
+    this.setState({
+      sortLowToHigh: true,
+      sortHighToLow: false,
+      filteredHPs: sort
+    })
+  }
 
+  handleSortHighToLow = (e) => {
+    let sort = this.state.filteredHPs.sort( (a,b) => b.average_covered_charges - a.average_covered_charges)
+    this.setState({
+      sortLowToHigh: false,
+      sortHighToLow: true,
+      filteredHPs: sort
+    })
   }
 
   render() {
@@ -56,7 +72,7 @@ class ProcedurePage extends React.Component {
               <h2>Pricing by Hospital:</h2>
             </div>
             <div className="ui grid">
-              <div className="ui four wide column">
+              <div className="ui six wide column">
                 <form className="ui form" style={{padding: "10px", "text-align": "center"}}>
                   <span className="field">
                     <label style={{"font-size": "12pt"}}>Filter</label>
@@ -64,16 +80,22 @@ class ProcedurePage extends React.Component {
                   </span>
                 </form>
               </div>
-              <div className="ui four wide column">
-                <form className="ui form" style={{padding: "10px", "text-align": "center"}}>
-                  <span className="field">
-                    <label style={{"font-size": "12pt"}}>Sort</label>
-                    <input type='checkbox' value="By Price" placeholder="Hospital Name, State, City" />
-                  </span>
-                </form>
+              <div className="ui four wide column" style={{"text-align": "center"}}>
+                <p></p>
+                <button className="ui button" onClick={() => this.setState({filteredHPs: this.state.procedure.hospital_procedures})}>Reset Filter/Sort</button>
               </div>
-              <div className="ui four wide column">
-                <button className="ui button">Reset Filter/Sort</button>
+              <div className="ui six wide column">
+                <form className="ui form" style={{padding: "10px", "text-align": "center"}}>
+                  <b style={{"font-size": "12pt"}}>Sort</b>
+                  <div className="inline field">
+                    <label>Price: Low to High</label>
+                    <input type='checkbox' checked={this.state.sortLowToHigh} onChange={this.handleSortLowToHigh}/>
+                  </div>
+                  <div className="inline field">
+                    <label>Price: High to Low</label>
+                    <input type='checkbox' checked={this.state.sortHighToLow} onChange={this.handleSortHighToLow}/>
+                  </div>
+                </form>
               </div>
             </div>
           <ProcedureTable procedure={p} hospital_procedures={this.state.filteredHPs} />

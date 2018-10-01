@@ -56,8 +56,7 @@ const ProcedureCard = props => {
       </div>
       <div className="extra content">
         <span>
-        <i className="dollar sign icon"></i>
-        {percent-100}% {(percent - 100) > 0 ? "more" : "less"} pricey than the average
+        {(percent - 100) > 0 ? <span><i className="arrow circle up icon"></i> {percent-100}% more</span> : <span><i className="arrow circle down icon"></i> {Math.abs(percent-100)}% less</span>} costly than the national average
       </span>
       </div>
       <div className="ui bottom attached button">

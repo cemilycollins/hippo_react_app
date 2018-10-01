@@ -13,6 +13,22 @@ const NavBar = props => {
           <div className="ui sub header" style={{color: "white"}}> &nbsp; Find the best hospitals in town!</div>
         </h2>
       </NavLink>
+      <NavLink
+        exact
+        to="/"
+        className="ui item"
+        activeClassName="ui active item"
+      >
+        Search Hospitals
+      </NavLink>
+      <NavLink
+        exact
+        to="/procedures"
+        className="ui item"
+        activeClassName="ui active item"
+      >
+        Search Procedures
+      </NavLink>
       {props.user ? <NavLink id="nav-item"
         exact
         to={`/users/${props.user.id}`}
@@ -41,6 +57,7 @@ const NavBar = props => {
     </div>
   );
 };
+
 
 const mapStateToProps = ({user}) => ({user})
 

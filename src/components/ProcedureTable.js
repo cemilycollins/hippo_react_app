@@ -55,7 +55,7 @@ const ProcedureTable = props => {
           <th colSpan="1">Hospital Name</th>
           <th colSpan="1"># Patients Treated (2016)</th>
           <th colSpan="1">Average Charge</th>
-          <th colSpan="1">% Difference from Nat'l Avg</th>
+          <th colSpan="1">% Difference from National Average</th>
         </tr>
       </thead>
       <tbody>

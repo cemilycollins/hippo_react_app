@@ -14,7 +14,6 @@ class CreateUserForm extends React.Component{
       password: '',
       city: '',
       state: '',
-      type_of: "user",
       profile_pic: ''
     }
   }
@@ -27,6 +26,12 @@ class CreateUserForm extends React.Component{
       [key]: val
     })
   }
+
+  // This code was meant for creating a user who is an administrator.
+  // <div className="ui form field">
+  //   <label>Are you a hospital administrator? (Check if yes)</label>
+  //   <input type="checkbox" onChange={(e)=>this.changeHandler(e.target.checked,'type_of')} name="type_of" />
+  // </div>
 
   addToDB=(e)=>{
     e.preventDefault()
@@ -42,7 +47,7 @@ class CreateUserForm extends React.Component{
         password: this.state.password,
         city: this.state.city,
         state: this.state.state,
-        type_of: this.state.type_of,
+        type_of: "user",
         profile_pic: this.state.profile_pic
       }})
     })
@@ -85,10 +90,6 @@ render(){
         <div className="ui form field">
           <label htmlFor="profile_pic">Profile Picture URL</label>
           <input onChange={(e)=>this.changeHandler(e.target.value,'profile_pic')} type="text" name="profile_pic" placeholder="Profile Picture URL" />
-        </div>
-        <div className="ui form field">
-          <label>Are you a hospital administrator? (Check if yes)</label>
-          <input type="checkbox" onChange={(e)=>this.changeHandler(e.target.checked,'type_of')} name="type_of" />
         </div>
         <input className="ui purple button" type="submit" name="Submit"/>
       </form>

@@ -11,7 +11,8 @@ class CreateReviewForm extends React.Component {
       user_id: props.user.id,
       hospital_id: props.id,
       date: new Date(),
-      rating: 0
+      rating: 0,
+      dateInvalid: false
     }
   }
 
@@ -25,6 +26,11 @@ class CreateReviewForm extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     })
+    if (e.target.name === "date" && e.target.value > new Date()) {
+      this.setState({
+        dateInvalid: true
+      })
+    }
   }
 
   handleSubmit = (e) => {
@@ -83,6 +89,7 @@ class CreateReviewForm extends React.Component {
           <div className="ui form field">
             <label htmlFor="date">Date of visit:</label>
             <input onChange={this.handleBodyChange} name="date" type="date" />
+            {this.state.dateInvalid ? <p style={{color: "red"}}>Date must be before today</p> : null}
           </div>
           <div className="ui form field">
             <label htmlFor="body">Body</label>
