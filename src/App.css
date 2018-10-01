@@ -1,6 +1,6 @@
 div.home_top_header {
   height: 600px;
-  background: url('https://media.istockphoto.com/photos/rays-of-light-in-the-corridor-of-the-hospital-picture-id629431156?k=6&m=629431156&s=612x612&w=0&h=hlFdUunRlBpgwrBZr_SBaUdsvAZswNAK54_NQhCv8iA=');
+  background: url('https://images.pexels.com/photos/935869/pexels-photo-935869.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
   background-position: center;
   background-size: cover;
 }
@@ -84,10 +84,6 @@ div.loader {
   position: relative;
 }
 
-div#marker {
-  z-index: -1;
-}
-
 #placesSearch {
   max-width: 600px;
   margin: 0 auto;
@@ -101,7 +97,14 @@ div#marker {
   padding: 15px;
 }
 
-h2.search.label {
+h1.search.label {
+  margin: auto;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px 2px black, 0 0 25px teal, 0 0 5px darkblue;
+}
+
+h1.search.label {
   margin: auto;
   text-align: center;
 }

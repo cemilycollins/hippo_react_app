@@ -5,8 +5,37 @@ function formatDollars(num) {
   return (num).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
 }
 
-function percent(nat, hosp) {
-  const percent = parseInt(((hosp / nat) * 100), 10)-100
+function percent(hosp, nat) {
+   return parseInt(((hosp / nat) * 100), 10)-100
+}
+
+function formatStars(rating) {
+  let arr = []
+  for (let i = 0; i < rating; i++) {
+    if ((rating-i) < 0.6 && (rating-i) > 0) {
+      arr.push(<i className="yellow star half icon" />)
+    } else {
+      arr.push(<i className="yellow star icon" />)
+    }
+  }
+  if (arr.length < 5) {
+    for (let i = arr.length; i < 5 ; i++) {
+      arr.push(<i className="grey star icon" />)
+    }
+  }
+  return arr
+}
+
+function hospitalName(name) {
+  return name.toLowerCase().split(" ").map(word => {
+    if (word.length > 0 && word !== "&") {
+      let newWord = word.split("")
+      newWord[0] = newWord[0].toUpperCase()
+      return newWord.join("")
+    } else {
+      return word
+    }
+  }).join(" ")
 }
 
 // <th colSpan="1">Average Medicare Payment</th>
@@ -20,7 +49,6 @@ const ProcedureTable = props => {
   const procedure = props.procedure
   return (
     <div>
-    <h2><i className="dollar sign icon"/>Pricing:</h2>
     <table className="ui celled striped table">
       <thead>
         <tr>
@@ -33,10 +61,10 @@ const ProcedureTable = props => {
       <tbody>
         {procedures.map(p =>
           <tr>
-            <td><Link to={`/hospitals/${p.hospital.id}`}>{p.hospital.name} - {p.hospital.city}, {p.hospital.state}</Link></td>
+            <td><Link to={`/hospitals/${p.hospital.id}`}>{hospitalName(p.hospital.name)} - {hospitalName(p.hospital.city)}, {p.hospital.state}</Link> <p>({formatStars(p.hospital.rating_average)})</p></td>
             <td>{p.total_discharges}</td>
             <td>${formatDollars(p.average_covered_charges)}</td>
-            <td>{percent(p.average_covered_charges, procedure.nat_avg_cost)}</td>
+            <td>{percent(p.average_covered_charges, procedure.nat_avg_cost)}%</td>
         </tr>)}
       </tbody>
     </table>

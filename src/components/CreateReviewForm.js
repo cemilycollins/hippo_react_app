@@ -1,6 +1,5 @@
 import React from "react"
 import { connect } from 'react-redux'
-import { Modal } from 'semantic-ui-react'
 import { ROOT_URL, addReview } from '../redux/actions'
 
 

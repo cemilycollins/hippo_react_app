@@ -22,9 +22,13 @@ function formatStars(rating) {
 
 function hospitalName(name) {
   return name.toLowerCase().split(" ").map(word => {
-    let newWord = word.split("")
-    newWord[0] = newWord[0].toUpperCase()
-    return newWord.join("")
+    if (word.length > 0 && word !== "&") {
+      let newWord = word.split("")
+      newWord[0] = newWord[0].toUpperCase()
+      return newWord.join("")
+    } else {
+      return word
+    }
   }).join(" ")
 }
 
@@ -33,7 +37,7 @@ const HospitalCard = props => {
   return (
     <div onClick={() => props.push(`/hospitals/${hospital.id}`)} className="ui hospital segment" >
     <div className='ui content'>
-      <div className='ui hospital header' id='name'>{hospital.name}</div>
+      <div className='ui hospital header' id='name'>{hospitalName(hospital.name)}</div>
       <p>{formatStars(hospital.rating_average)} ({hospital.total_reviews} {hospital.total_reviews === 1 ? "review" : "reviews"})</p>
       <div className='description'>
         <p><b>Address:</b> {hospital.street_address}</p>

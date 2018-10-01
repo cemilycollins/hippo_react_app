@@ -62,7 +62,7 @@ const ProcedureCard = props => {
       </div>
       <div className="ui bottom attached button">
         <i className="add icon"></i>
-        See More
+        Compare to other hospitals
       </div>
     </div>
   )

@@ -87,16 +87,18 @@ class ProcedureContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{"text-align": "center"}}>
         {this.props.procedures.length > 0 ?
           <div>
-            <h2 style={{"text-align": "center"}}>Procedures and Pricing</h2>
-            <form className="ui form">
-              <input type='text' value={this.state.searchTerm}  onChange={this.handleChange} />
+            <form className="ui form" style={{padding: "10px"}}>
+              <span className="inline field">
+                <label style={{"font-size": "12pt"}}>Filter by keyword</label>
+                <input type='text' style={{"min-width": "400px"}} value={this.state.searchTerm}  onChange={this.handleChange} placeholder="Heart transplant, Bronchitis, Hip..." />
+              </span>
             </form>
-            <h3>Showing procedures {this.state.firstIndex + 1} to {this.state.lastIndex} of {this.state.filteredProcedures.length}</h3>
-            <div className="ui left aligned button" onClick={this.handlePrev}><i className="caret left icon"/> Prev</div>
+            <div className="ui left floated button" onClick={this.handlePrev}><i className="caret left icon"/> Prev</div>
             <div className="ui right floated button" onClick={this.handleNext}>Next <i className="caret right icon"/></div>
+            <h4>{this.state.firstIndex + 1} to {this.state.lastIndex} of {this.state.filteredProcedures.length}</h4>
             <div className="ui cards">
               {this.state.filteredProcedures.map(procedure => <ProcedureCard procedure={procedure}/>)}
             </div></div> : <h2>There are currently no procedures reported for this hospital</h2>

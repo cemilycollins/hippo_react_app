@@ -17,6 +17,19 @@ function formatStars(rating) {
   return arr
 }
 
+function Capitalize(name) {
+  return name.toLowerCase().split(" ").map(word => {
+    if (word.length > 0 && word !== "&") {
+      let newWord = word.split("")
+      newWord[0] = newWord[0].toUpperCase()
+      return newWord.join("")
+    } else {
+      return word
+    }
+  }).join(" ")
+}
+
+
 function formatPhone(num) {
   let a = num.toString()
   return `(${a.slice(0,3)}) ${a.slice(3,6)}-${a.slice(6,10)}`

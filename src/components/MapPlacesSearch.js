@@ -39,7 +39,8 @@ class MapPlacesSearch extends React.Component {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div className="ui inline form field" >
-            <h2 className="search label">Search hospitals near you</h2>
+            {this.props.home ? <h1 className="search label">Search hospitals near you</h1> :
+              <h2 className="search label">Search hospitals near you</h2> }
             <input
               {...getInputProps({
                 placeholder: 'Zip Code, City, State ...',

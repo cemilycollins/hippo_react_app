@@ -25,7 +25,7 @@ class CreateReviewModal extends React.Component {
   return (
     <Modal trigger={<Button onClick={this.handleModal}
       className="ui purple button"
-      style={{'margin-bottom': "15px"}}>Add Review</Button>}
+      style={{'margin-bottom': "15px", margin: "auto"}}>Add Review</Button>}
       open={this.state.modalOpen}
       onClose={() => {this.setState({modalOpen: false})}}>
       {this.props.id && this.props.user ? <div>
