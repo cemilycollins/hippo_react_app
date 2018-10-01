@@ -5,11 +5,32 @@ import { connect } from 'react-redux'
 
 export class MapContainer extends React.Component {
 
-  state = {
-    showingInfoWindow: false,
-    activeMarker: {},
-    selectedPlace: {},
-  };
+  constructor() {
+    super()
+    this.state = {
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {},
+      center: null,
+      zoom: null
+    }
+  }
+
+  _isMounted = false
+
+  componentDidMount() {
+    this._isMounted = true
+    if (this._isMounted) {
+      this.setState({
+        center: this.props.mapCenter.center,
+        zoom: this.props.mapCenter.zoom
+      })
+    }
+  }
+
+  componentDidUnmount() {
+    this._isMounted = false
+  }
 
   onMarkerClick = (props, marker, e) =>
     this.setState({
@@ -54,6 +75,7 @@ export class MapContainer extends React.Component {
 
 
   render() {
+    console.log(this.props)
     if (this.props.mapCenter && this.props.hospitals.length > 0) {
       const mapProps = this.props.mapCenter
       return (
@@ -61,8 +83,8 @@ export class MapContainer extends React.Component {
           <Map
             google={this.props.google}
             onClick={this.onMapClicked}
-            zoom={mapProps.zoom}
-            initialCenter={mapProps.center}
+            zoom={this.state.zoom}
+            initialCenter={this.state.center}
             >
 
             {this.props.hospitals.map(h => <Marker
@@ -85,6 +107,18 @@ export class MapContainer extends React.Component {
           </Map>
         </div>
       )
+    } else if (this.props.mapCenter && this.props.hospitals.length === 0) {
+      const map = this.props.mapCenter
+      return (
+        <div id="map">
+          <Map
+            google={this.props.google}
+            zoom={map.zoom}
+            initialCenter={map.center}
+            >
+          </Map>
+        </div>
+      )
     } else {
       return (
         <div id="map">
@@ -97,6 +131,8 @@ export class MapContainer extends React.Component {
   }
 }
 
-export default connect(null, {push})(GoogleApiWrapper((props) =>({
+const mapStateToProps = ({mapCenter, hospitals}) => ({mapCenter, hospitals})
+
+export default connect(mapStateToProps, {push})(GoogleApiWrapper((props) =>({
   apiKey: "AIzaSyBaLcXDzSMz-u-TmpYGp7Cv4NRrRbEo6uM"
 }))(MapContainer))

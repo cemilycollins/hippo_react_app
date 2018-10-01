@@ -6,6 +6,7 @@ class ProcedurePage extends React.Component {
 
   state = {
     procedure: null,
+    originalHPs: null,
     filteredHPs: null,
     searchTerm: "",
     sortLowToHigh: false,
@@ -18,7 +19,8 @@ class ProcedurePage extends React.Component {
       .then(json => {
         this.setState({
           procedure: json,
-          filteredHPs: json.hospital_procedures
+          originalHPs: [...json.hospital_procedures],
+          filteredHPs: [...json.hospital_procedures]
         })
       })
   }
@@ -56,8 +58,17 @@ class ProcedurePage extends React.Component {
     })
   }
 
+  reset = () => {
+    this.setState({
+      filteredHPs: this.state.originalHPs,
+      searchTerm: "",
+      sortLowToHigh: false,
+      sortHighToLow: false
+    })
+  }
+
   render() {
-    if (this.state.procedure) {
+    if (this.state.procedure && this.state.procedure.nat_avg_cost) {
       const p = this.state.procedure
       return (
         <div id="profile">
@@ -82,7 +93,7 @@ class ProcedurePage extends React.Component {
               </div>
               <div className="ui four wide column" style={{"text-align": "center"}}>
                 <p></p>
-                <button className="ui button" onClick={() => this.setState({filteredHPs: this.state.procedure.hospital_procedures})}>Reset Filter/Sort</button>
+                <button className="ui button" onClick={this.reset}>Reset Filter/Sort</button>
               </div>
               <div className="ui six wide column">
                 <form className="ui form" style={{padding: "10px", "text-align": "center"}}>

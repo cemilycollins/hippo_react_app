@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from "react-redux"
 
 import HospitalCard from '../components/HospitalCard'
-import ConnectedMapContainer from '../components/Map'
+import MapContainer from '../containers/NewMapContainer'
 import MapPlacesSearch from '../components/MapPlacesSearch'
 
 const HospitalContainer = props => {
@@ -10,7 +10,7 @@ const HospitalContainer = props => {
     return (
       <div>
         <MapPlacesSearch home={false} />
-        <ConnectedMapContainer mapCenter={props.mapCenter} hospitals={props.hospitals}/>
+        <MapContainer />
         <div className="hospitalContainer">
           {props.hospitals ? props.hospitals.map(hospital => <HospitalCard hospital={hospital}/>) : null}
         </div>
