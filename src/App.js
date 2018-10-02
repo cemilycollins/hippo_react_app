@@ -35,7 +35,7 @@ class App extends Component {
         <NavBar user={this.props.user}/>
         <Switch>
           <Route exact path="/" render={() => <MapPlacesSearch home={true} />} />
-          <Route exact path="/search" component={HospitalContainer} />
+          <Route exact path="/hospitals" component={HospitalContainer} />
           <Route exact path='/login' component={LoginForm} />
           <Route exact path='/signup' component={CreateUserForm} />
           <Route exact path='/procedures/:procedure_id' render={props => <ProcedurePage id={props.match.params.procedure_id}/>} />

@@ -10,7 +10,8 @@ class ProcedurePage extends React.Component {
     filteredHPs: null,
     searchTerm: "",
     sortLowToHigh: false,
-    sortHighToLow: false
+    sortHighToLow: false,
+    sortByRating: false
   }
 
   componentDidMount() {
@@ -45,6 +46,7 @@ class ProcedurePage extends React.Component {
     this.setState({
       sortLowToHigh: true,
       sortHighToLow: false,
+      sortByRating: false,
       filteredHPs: sort
     })
   }
@@ -54,6 +56,17 @@ class ProcedurePage extends React.Component {
     this.setState({
       sortLowToHigh: false,
       sortHighToLow: true,
+      sortByRating: false,
+      filteredHPs: sort
+    })
+  }
+
+  handleSortByRating = (e) => {
+    let sort = this.state.filteredHPs.sort( (a,b) => b.rating_average - a.rating_average)
+    this.setState({
+      sortByRating: true,
+      sortLowToHigh: false,
+      sortHighToLow: false,
       filteredHPs: sort
     })
   }
@@ -63,7 +76,8 @@ class ProcedurePage extends React.Component {
       filteredHPs: this.state.originalHPs,
       searchTerm: "",
       sortLowToHigh: false,
-      sortHighToLow: false
+      sortHighToLow: false,
+      sortByRating: false
     })
   }
 
@@ -105,6 +119,10 @@ class ProcedurePage extends React.Component {
                   <div className="inline field">
                     <label>Price: High to Low</label>
                     <input type='checkbox' checked={this.state.sortHighToLow} onChange={this.handleSortHighToLow}/>
+                  </div>
+                  <div className="inline field">
+                    <label>Rating: High to Low</label>
+                    <input type='checkbox' checked={this.state.sortByRating} onChange={this.handleSortByRating}/>
                   </div>
                 </form>
               </div>

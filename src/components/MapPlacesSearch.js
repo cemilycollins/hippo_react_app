@@ -23,7 +23,7 @@ class MapPlacesSearch extends React.Component {
       .then(latLng => {
         this.props.updateMapCenter({center: latLng, zoom: 10})
         this.props.fetchHospitals(latLng)
-        this.props.push('/search')
+        this.props.push('/hospitals')
       })
       .catch(error => console.error('Error', error));
   };

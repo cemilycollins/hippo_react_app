@@ -10,12 +10,12 @@ const NavBar = props => {
         <h2 className="ui header">
           <i className="h square icon" />
           <div className="content">Hippo</div>
-          <div className="ui sub header" style={{color: "white"}}> &nbsp; Find the best hospitals in town!</div>
+          <p style={{color: "white", "font-size": "12pt"}}> &nbsp; Find the best hospitals in town!</p>
         </h2>
       </NavLink>
       <NavLink
         exact
-        to="/search"
+        to="/hospitals"
         className="ui item"
         activeClassName="ui active item"
       >

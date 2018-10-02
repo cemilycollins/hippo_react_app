@@ -99,9 +99,12 @@ class ProcedureContainer extends React.Component {
             {this.state.filteredProcedures.length > 15 ? <span>
               <div className="ui left floated button" onClick={this.handlePrev}><i className="caret left icon"/> Prev</div>
               <div className="ui right floated button" onClick={this.handleNext}>Next <i className="caret right icon"/></div>
-            </span> : null}
+            </span> : <span>
+              <div className="ui left floated disabled button"><i className="caret left icon"/> Prev</div>
+              <div className="ui right floated disabled button">Next <i className="caret right icon"/></div>
+            </span>}
 
-            <h4>Showing procedures {this.state.firstIndex + 1} to {this.state.lastIndex} of {this.state.filteredProcedures.length}</h4>
+            {this.state.filteredProcedures.length > 15 ? <h4>Showing procedures {this.state.firstIndex + 1} to {this.state.lastIndex} of {this.state.filteredProcedures.length}</h4> : <h4>Showing procedures {this.state.firstIndex + 1} to {this.state.filteredProcedures.length} of {this.state.filteredProcedures.length}</h4> }
             <div className="ui cards">
               {this.state.procedures.map(procedure => <ProcedureCard procedure={procedure}/>)}
             </div>
@@ -110,7 +113,7 @@ class ProcedureContainer extends React.Component {
               <div className="ui left floated button" onClick={this.handlePrev}><i className="caret left icon"/> Prev</div>
               <div className="ui right floated button" onClick={this.handleNext}>Next <i className="caret right icon"/></div>
             </div> : null}
-          </div> : <h2>There are currently no procedures reported for this hospital</h2>
+          </div> : <h3>There are currently no procedures reported for this hospital</h3>
         }
       </div>
     )

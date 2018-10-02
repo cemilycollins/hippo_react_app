@@ -11,9 +11,9 @@ const ProcedureCard = props => {
   const p = props.procedure
   const percent = Math.abs(parseInt(((p.average_covered_charges / p.nat_avg_cost) * 100), 10))
   return (
-    <div className="ui card" onClick={() => props.push(`/procedures/${p.procedure_id}`)}>
+    <div className="ui card">
       <div className="content">
-        <div className="header">{p.procedure_name}</div>
+        <div className="header" onClick={() => props.push(`/procedures/${p.procedure_id}`)}>{p.procedure_name}</div>
       </div>
       <div className="content">
       <h4 className="ui sub header" style={{'font-size': "12pt"}}>Pricing</h4>
@@ -59,7 +59,7 @@ const ProcedureCard = props => {
         {(percent - 100) > 0 ? <span><i className="arrow circle up icon"></i> {percent-100}% more</span> : <span><i className="arrow circle down icon"></i> {Math.abs(percent-100)}% less</span>} costly than the national average
       </span>
       </div>
-      <div className="ui bottom attached button">
+      <div className="ui bottom attached button" onClick={() => props.push(`/procedures/${p.procedure_id}`)}>
         <i className="add icon"></i>
         Compare to other hospitals
       </div>

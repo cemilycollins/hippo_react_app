@@ -59,7 +59,7 @@ const HospitalMap = withScriptjs(withGoogleMap((props) =>{
   if (props.mapCenter) {
     return (
         <GoogleMap
-          defaultZoom={props.mapCenter.zoom}
+          zoom={props.mapCenter.zoom}
           center={props.mapCenter.center}
           >
           {markers}
