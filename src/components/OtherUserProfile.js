@@ -33,11 +33,11 @@ class OtherUserProfile extends React.Component {
       const user = this.state.user
       return (
         <div id="profile">
-          <div className="ui teal segment">
-            <div className="three wide column">
+          <div className='ui teal segment' id="profileSegment">
+            <div style={{width: "155px"}}>
               <img className="ui small circular image" src={user.profile_pic} alt="profile"/>
             </div>
-            <div className="nine wide column">
+            <div>
               <h2>{user.name}</h2>
               <p><b>{user.city}, {user.state}</b></p>
             </div>

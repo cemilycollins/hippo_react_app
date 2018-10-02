@@ -40,7 +40,7 @@ const ProcedureCard = props => {
             <div className="content">
               <div className="summary">
               <i className="users icon"></i>
-              <a>{p.total_discharges} people treated</a> in 2016
+              <a>{p.total_discharges} cases</a> at this hospital in 2016
               </div>
             </div>
           </div>

@@ -15,7 +15,7 @@ const NavBar = props => {
       </NavLink>
       <NavLink
         exact
-        to="/"
+        to="/search"
         className="ui item"
         activeClassName="ui active item"
       >

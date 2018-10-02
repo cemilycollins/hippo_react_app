@@ -1,4 +1,4 @@
-export const ROOT_URL = "https://hippo-rails-api.herokuapp.com"
+export const ROOT_URL = "http://localhost:3000"
 
 // http://localhost:3000
 // https://hippo-rails-api.herokuapp.com
@@ -22,7 +22,10 @@ export function fetchHospitals(latlng) {
       body: JSON.stringify({...latlng, range: 0.5})
     })
       .then(r => r.json())
-      .then(json => dispatch({type: "FETCH_HOSPITALS", hospitals: json}))
+      .then(json => {
+        console.log(json)
+        dispatch({type: "FETCH_HOSPITALS", hospitals: json})
+      })
   }
 }
 

@@ -20,22 +20,41 @@ const formatStars = (rating) => {
   return arr
 }
 
+class MapMarker extends React.Component {
+
+  state = {
+    isOpen: false
+  }
+
+  onToggleOpen = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
+  }
+
+  render() {
+    const hospital = this.props.hospital
+    return (
+      <Marker
+        key={hospital.id}
+        position={{lat: hospital.latitude, lng: hospital.longitude}}
+        onClick={this.onToggleOpen}
+      >
+        {this.state.isOpen && <InfoWindow onCloseClick={this.onToggleOpen}>
+          <div>
+            <Link to={`/hospitals/${hospital.id}`}><h4>{hospital.name}</h4></Link>
+            <p>{formatStars(hospital.rating_average)}</p>
+          </div>
+        </InfoWindow>}
+      </Marker>
+    )
+  }
+}
+
 const HospitalMap = withScriptjs(withGoogleMap((props) =>{
 
-  const state = {
-    isOpen: false,
-    hospital: null
-  }
-
-  function onToggleOpen(id) {
-    state.isOpen = !state.isOpen
-    state.hospital = props.hospitals.find(h => h.id === id)
-  }
-  const markers = props.hospitals.map( hospital => <Marker
-                    key={hospital.id}
-                    position={{lat: hospital.latitude, lng: hospital.longitude}}
-                    onClick={() => onToggleOpen(hospital.id)}
-                  />);
+  const markers = props.hospitals.map( hospital => <MapMarker hospital={hospital} />
+                );
 
   if (props.mapCenter) {
     return (
@@ -44,11 +63,6 @@ const HospitalMap = withScriptjs(withGoogleMap((props) =>{
           center={props.mapCenter.center}
           >
           {markers}
-          {state.isOpen && <InfoWindow onCloseClick={() => onToggleOpen()}>
-            <Link to={`/hospitals/${state.hospital.id}`}><h4>{state.hospital.name}</h4></Link>
-            <p>{formatStars(state.hospital.rating_average)}</p>
-          </InfoWindow>
-        }
         </GoogleMap>
       )
   } else {

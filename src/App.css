@@ -32,6 +32,10 @@ div.home_top_header {
   width: 100%;
 }
 
+.ui.card {
+  margin: auto;
+}
+
 ui.modal {
   top: 10%;
 }
