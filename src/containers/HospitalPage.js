@@ -52,7 +52,7 @@ class HospitalPage extends React.Component {
             </div>
           <div className="ui divider"></div>
             <h2 style={{"text-align": "center"}}>Procedures and Pricing</h2>
-            {hospital.hospital_procedures ? <ProcedureCardsContainer procedures={hospital.hospital_procedures} /> :
+            {hospital.hospital_procedures ? <ProcedureCardsContainer procedures={hospital.hospital_procedures} all={false}/> :
               <div style={{height: '300px', width: '100%', position: "relative"}}>
                 <div className="loader">
                   <div className="ui active dimmer">

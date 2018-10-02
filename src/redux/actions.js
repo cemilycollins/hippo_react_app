@@ -21,6 +21,10 @@ export function fetchHospitals(latlng) {
   }
 }
 
+export function setProcedures(json) {
+  return ({type: "SET_PROCEDURES", procedures: json})
+}
+
 export function updateUser(user) {
   return {type: "UPDATE_USER", user: user }
 }

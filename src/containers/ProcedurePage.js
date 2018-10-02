@@ -98,7 +98,7 @@ class ProcedurePage extends React.Component {
             </div>
             <div className="ui grid">
               <div className="ui six wide column">
-                <form className="ui form" style={{padding: "10px", "text-align": "center"}}>
+                <form className="ui form" style={{padding: "10px", "text-align": "center"}} onSubmit={(e) => e.preventDefault()}>
                   <span className="field">
                     <label style={{"font-size": "12pt"}}>Filter</label>
                     <input type='text' value={this.state.searchTerm}  onChange={this.handleChange} placeholder="Hospital Name, State, City" />
@@ -112,15 +112,15 @@ class ProcedurePage extends React.Component {
               <div className="ui six wide column">
                 <form className="ui form" style={{padding: "10px", "text-align": "center"}}>
                   <b style={{"font-size": "12pt"}}>Sort</b>
-                  <div className="inline field">
+                  <div className="inline field" id="sort">
                     <label>Price: Low to High</label>
                     <input type='checkbox' checked={this.state.sortLowToHigh} onChange={this.handleSortLowToHigh}/>
                   </div>
-                  <div className="inline field">
+                  <div className="inline field" id="sort">
                     <label>Price: High to Low</label>
                     <input type='checkbox' checked={this.state.sortHighToLow} onChange={this.handleSortHighToLow}/>
                   </div>
-                  <div className="inline field">
+                  <div className="inline field" id="sort">
                     <label>Rating: High to Low</label>
                     <input type='checkbox' checked={this.state.sortByRating} onChange={this.handleSortByRating}/>
                   </div>

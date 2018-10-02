@@ -98,12 +98,22 @@ function showHospitalReducer(state = null, action) {
   }
 }
 
+function proceduresReducer(state = [], action) {
+  switch (action.type) {
+    case "SET_PROCEDURES":
+      return action.procedures
+    default:
+      return state
+  }
+}
+
 
 const rootReducer = combineReducers({
   hospitals: hospitalsReducer,
   user: userReducer,
   mapCenter: mapReducer,
-  showHospital: showHospitalReducer
+  showHospital: showHospitalReducer,
+  procedures: proceduresReducer
 })
 
 export default rootReducer

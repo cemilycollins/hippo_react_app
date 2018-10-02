@@ -1,14 +1,15 @@
 import React from 'react'
-import ProcedureCard from '../components/ProcedureCard'
+import { ROOT_URL, setProcedures } from '../redux/actions'
+import { connect } from 'react-redux'
 import AllProcedureCard from '../components/AllProcedureCard'
 
-class ProcedureContainer extends React.Component {
+class AllProceduresContainer extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      filteredProcedures: props.procedures,
-      procedures: props.procedures.slice(0,15),
+      filteredProcedures: [],
+      procedures: [],
       firstIndex: 0,
       lastIndex: 15,
       searchTerm: ""
@@ -19,11 +20,16 @@ class ProcedureContainer extends React.Component {
 
   componentDidMount() {
     this._isMounted = true
-    if (this._isMounted && this.props.procedures.length > 0) {
-      this.setState({
-        filteredProcedures: this.props.procedures,
-        procedures: this.props.procedures.slice(0,15)
-      })
+    if (this._isMounted && this.props.procedures.length === 0) {
+      fetch(ROOT_URL + '/procedures')
+        .then(r => r.json())
+        .then(json => {
+          this.props.setProcedures(json)
+          this.setState({
+            filteredProcedures: this.props.procedures,
+            procedures: this.props.procedures.slice(0,15)
+          })
+        })
     }
   }
 
@@ -123,7 +129,7 @@ class ProcedureContainer extends React.Component {
 
             {this.state.filteredProcedures.length > 15 ? <h4>Showing procedures {this.state.firstIndex + 1} to {this.state.lastIndex} of {this.state.filteredProcedures.length}</h4> : <h4>Showing procedures {this.state.firstIndex + 1} to {this.state.filteredProcedures.length} of {this.state.filteredProcedures.length}</h4> }
             <div className="ui cards">
-              {this.props.all ? this.state.procedures.map(procedure => <AllProcedureCard procedure={procedure}/>): this.state.procedures.map(procedure => <ProcedureCard procedure={procedure}/>)}
+              {this.state.procedures.map(procedure => <AllProcedureCard procedure={procedure}/>)}
             </div>
             {this.state.filteredProcedures.length > 15 ? <div>
               <p></p>
@@ -133,10 +139,10 @@ class ProcedureContainer extends React.Component {
           </div> : null
         }
         {this.props.all && this.props.procedures.length === 0 ? <h3>Loading...</h3> : null}
-        {!this.props.all && this.props.procedures.length === 0 ? <h3>There are currently no procedures reported for this hospital</h3> : null}
       </div>
     )
   }
 }
+const mapStateToProps = ({procedures}) => ({procedures})
 
-export default (ProcedureContainer)
+export default connect(mapStateToProps, {setProcedures})(AllProceduresContainer)

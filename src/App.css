@@ -24,6 +24,10 @@ div.home_top_header {
   margin-top: 20px;
 }
 
+.ui.form .field#sort {
+  margin: 0 0;
+}
+
 .ui.button {
   margin-bottom: 15px;
 }
