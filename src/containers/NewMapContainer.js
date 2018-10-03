@@ -4,14 +4,14 @@ import HospitalMap from "../components/NewMap";
 class MapContainer extends React.Component {
 
 	render() {
-		let passProps = null
+		let passProps = false
 		let id = "map"
 		let hospital = null
 		if (this.props.showPage) {
 			passProps = this.props.latlng
 			id = "map2"
 			hospital = this.props.hospital
-		} 
+		}
 		return (
 			<HospitalMap
 				passProps={passProps}

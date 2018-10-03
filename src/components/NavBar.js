@@ -10,7 +10,7 @@ const NavBar = props => {
         <h2 className="ui header">
           <i className="h square icon" />
           <div className="content">Hippo</div>
-          <p style={{color: "white", "font-size": "12pt"}}> &nbsp; Find the best hospitals in town!</p>
+          <p style={{color: "white", fontSize: "12pt"}}> &nbsp; Find the best hospitals in town!</p>
         </h2>
       </NavLink>
       <NavLink
