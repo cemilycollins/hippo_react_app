@@ -34,7 +34,7 @@ class OtherUserProfile extends React.Component {
     }
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     this._isMounted = false
   }
 
@@ -44,8 +44,9 @@ class OtherUserProfile extends React.Component {
       return (
         <div id="profile">
           <div className='ui teal segment' id="profileSegment">
-            <div style={{width: "155px"}}>
-              <img className="ui small circular image" src={user.profile_pic} alt="profile"/>
+            <div style={{width: "155px", margin: "10px"}}>
+              <div style={{height: "155px", background: `url(${user.profile_pic})`, backgroundPosition: "center",
+              backgroundSize: "cover"}} className="ui small circular image" src={user.profile_pic} alt="profile"/>
             </div>
             <div>
               <h2>{user.name}</h2>

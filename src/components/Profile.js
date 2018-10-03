@@ -27,7 +27,8 @@ class Profile extends React.Component {
           <div className="ui teal segment" id="profileSegment">
             <div className="ui grid">
               <div className="four wide column">
-                <img className="ui small circular image" src={user.profile_pic} alt="profile"/>
+                <div style={{height: "155px", background: `url(${user.profile_pic})`, backgroundPosition: "center",
+                backgroundSize: "cover"}} className="ui small circular image" src={user.profile_pic} alt="profile"/>
               </div>
               <div className="eight wide column">
                 <h2>{user.name} <i onClick={this.handleClick} className="ui edit outline icon" /></h2>
