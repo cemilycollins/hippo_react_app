@@ -2,6 +2,10 @@ import React from 'react'
 import { ROOT_URL } from '../redux/actions'
 import ProcedureTable from '../components/ProcedureTable'
 
+const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 class ProcedurePage extends React.Component {
 
   state = {
@@ -91,8 +95,8 @@ class ProcedurePage extends React.Component {
           <h1>{p.name} ({p.procedure_number_string})</h1>
             <div className="ui teal segment">
               <h3>National Average Cost: ${this.formatDollars(p.nat_avg_cost)}</h3>
-              <p><b>Number of Hospitals:</b> {p.total_hospitals}</p>
-              <p><b>Total Cases in 2016:</b> {p.total_discharges}</p>
+              <p><b>Number of Hospitals:</b> {numberWithCommas(p.total_hospitals)}</p>
+              <p><b>Total Cases in 2016:</b> {numberWithCommas(p.total_discharges)}</p>
             </div>
           <div className="ui divider"></div>
             <div style={{textAlign: "center"}}>
