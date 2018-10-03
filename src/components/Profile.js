@@ -39,7 +39,7 @@ class Profile extends React.Component {
           </div>
           {this.state.editUserClicked ? <EditUserForm hideForm={this.handleClick} /> : null}
           <div className="ui divider"></div>
-          {user.reviews.length > 0 ? <ReviewsContainer reviews={user.reviews}/> : <h2>You don't have any reviews yet! <Link to="/">Click here</Link> to see hospitals.</h2> }
+          {user.reviews && user.reviews.length > 0 ? <ReviewsContainer reviews={user.reviews}/> : <h2>You don't have any reviews yet! <Link to="/">Click here</Link> to see hospitals.</h2> }
         </div>
       )
     } else {

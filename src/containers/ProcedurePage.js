@@ -95,25 +95,25 @@ class ProcedurePage extends React.Component {
               <p><b>Total Cases in 2016:</b> {p.total_discharges}</p>
             </div>
           <div className="ui divider"></div>
-            <div style={{"text-align": "center"}}>
+            <div style={{textAlign: "center"}}>
               <h2>Pricing by Hospital:</h2>
             </div>
             <div className="ui grid">
               <div className="ui six wide column">
-                <form className="ui form" style={{padding: "10px", "text-align": "center"}} onSubmit={(e) => e.preventDefault()}>
+                <form className="ui form" style={{padding: "10px", textAlign: "center"}} onSubmit={(e) => e.preventDefault()}>
                   <span className="field">
-                    <label style={{"font-size": "12pt"}}>Filter</label>
+                    <label style={{fontSize: "12pt"}}>Filter</label>
                     <input type='text' value={this.state.searchTerm}  onChange={this.handleChange} placeholder="Hospital Name, State, City" />
                   </span>
                 </form>
               </div>
-              <div className="ui four wide column" style={{"text-align": "center"}}>
+              <div className="ui four wide column" style={{textAlign: "center"}}>
                 <p></p>
                 <button className="ui button" onClick={this.reset}>Reset Filter/Sort</button>
               </div>
               <div className="ui six wide column">
-                <form className="ui form" style={{padding: "10px", "text-align": "center"}}>
-                  <b style={{"font-size": "12pt"}}>Sort</b>
+                <form className="ui form" style={{padding: "10px", textAlign: "center"}}>
+                  <b style={{fontSize: "12pt"}}>Sort</b>
                   <div className="inline field" id="sort">
                     <label>Price: Low to High</label>
                     <input type='checkbox' checked={this.state.sortLowToHigh} onChange={this.handleSortLowToHigh}/>

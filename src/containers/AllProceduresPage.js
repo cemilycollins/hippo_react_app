@@ -38,7 +38,7 @@ class AllProceduresPage extends React.Component {
     }
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     this._isMounted = false
   }
 

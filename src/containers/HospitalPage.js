@@ -45,13 +45,13 @@ class HospitalPage extends React.Component {
           <div className="ui divider"></div>
             <HospitalDetail hospital={hospital} />
           <div className="ui divider"></div>
-            <div style={{"text-align": "center"}}>
+            <div style={{textAlign: "center"}}>
               {hospital.total_reviews > 0 ? null : <h3>Be the first to review this hospital!</h3> }
               <CreateReviewModal id={this.props.id} hospitalName={this.hospitalName(hospital)}/>
-              {hospital.reviews && hospital.reviews.length > 0 ? <div style={{"text-align": "left"}}><ReviewsContainer reviews={hospital.reviews}/></div> : null }
+              {hospital.reviews && hospital.reviews.length > 0 ? <div style={{textAlign: "left"}}><ReviewsContainer reviews={hospital.reviews}/></div> : null }
             </div>
           <div className="ui divider"></div>
-            <h2 style={{"text-align": "center"}}>Procedures and Pricing</h2>
+            <h2 style={{textAlign: "center"}}>Procedures and Pricing</h2>
             {hospital.hospital_procedures ? <ProcedureCardsContainer procedures={hospital.hospital_procedures} all={false}/> :
               <div style={{height: '300px', width: '100%', position: "relative"}}>
                 <div className="loader">

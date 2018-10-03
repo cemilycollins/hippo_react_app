@@ -53,7 +53,7 @@ const HospitalContainer = props => {
           </div>
           <div className="twelve wide column">
             <div id="hospitalContainer">
-              {props.hospitals ? props.hospitals.slice(0,9).map(hospital => <HospitalCard hospital={hospital}/>) : null}
+              {props.hospitals ? props.hospitals.slice(0,9).map(hospital => <HospitalCard key={hospital.id} hospital={hospital}/>) : null}
             </div>
           </div>
         </div>

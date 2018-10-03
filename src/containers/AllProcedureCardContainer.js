@@ -160,7 +160,7 @@ class AllProceduresContainer extends React.Component {
 
             {this.state.filteredProcedures.length > 15 ? <h4>Showing procedures {this.state.firstIndex + 1} to {this.state.lastIndex} of {this.state.filteredProcedures.length}</h4> : <h4>Showing procedures {this.state.firstIndex + 1} to {this.state.filteredProcedures.length} of {this.state.filteredProcedures.length}</h4> }
             <div className="ui cards">
-              {this.state.procedures.map(procedure => <AllProcedureCard procedure={procedure}/>)}
+              {this.state.procedures.map(procedure => <AllProcedureCard key={procedure.id} procedure={procedure}/>)}
             </div>
             {this.state.filteredProcedures.length > 15 ? <div>
               <p></p>

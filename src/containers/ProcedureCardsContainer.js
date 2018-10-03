@@ -104,13 +104,13 @@ class ProcedureContainer extends React.Component {
 
   render() {
     return (
-      <div style={{"text-align": "center"}}>
+      <div style={{textAlign: "center"}}>
         {this.props.procedures.length > 0 ?
           <div>
             <form className="ui form" style={{padding: "10px"}} onSubmit={(e) => e.preventDefault()}>
               <span className="inline field">
-                <label style={{"font-size": "12pt"}}>Filter by keyword</label>
-                <input type='text' style={{"min-width": "400px"}} value={this.state.searchTerm}  onChange={this.handleChange} placeholder="Heart transplant, Bronchitis, Hip..." />
+                <label style={{fontSize: "12pt"}}>Filter by keyword</label>
+                <input type='text' style={{minWidth: "400px"}} value={this.state.searchTerm}  onChange={this.handleChange} placeholder="Heart transplant, Bronchitis, Hip..." />
               </span>
             </form>
             {this.state.filteredProcedures.length > 15 ? <span>
@@ -123,7 +123,7 @@ class ProcedureContainer extends React.Component {
 
             {this.state.filteredProcedures.length > 15 ? <h4>Showing procedures {this.state.firstIndex + 1} to {this.state.lastIndex} of {this.state.filteredProcedures.length}</h4> : <h4>Showing procedures {this.state.firstIndex + 1} to {this.state.filteredProcedures.length} of {this.state.filteredProcedures.length}</h4> }
             <div className="ui cards">
-              {this.props.all ? this.state.procedures.map(procedure => <AllProcedureCard procedure={procedure}/>): this.state.procedures.map(procedure => <ProcedureCard procedure={procedure}/>)}
+              {this.props.all ? this.state.procedures.map(procedure => <AllProcedureCard key={procedure.id} procedure={procedure}/>): this.state.procedures.map(procedure => <ProcedureCard procedure={procedure}/>)}
             </div>
             {this.state.filteredProcedures.length > 15 ? <div>
               <p></p>

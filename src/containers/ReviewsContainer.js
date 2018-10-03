@@ -7,7 +7,7 @@ const ReviewContainer = props => {
       <p></p>
       {props.reviews.length > 0 ?
         <div className="ui cards">
-          {props.reviews.map(review => <ReviewCard review={review}/>)}
+          {props.reviews.map(review => <ReviewCard key={review.id} review={review}/>)}
         </div> : <h3>Loading...</h3>}
     </div>
   )
