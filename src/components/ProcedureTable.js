@@ -61,7 +61,7 @@ const ProcedureTable = props => {
       <tbody>
         {procedures.map(p =>
           <tr>
-            <td><Link to={`/hospitals/${p.hospital.id}`}>{hospitalName(p.hospital.name)} - {hospitalName(p.hospital.city)}, {p.hospital.state}</Link> <p>({formatStars(p.hospital.rating_average)})</p></td>
+            <td><Link to={`/hospitals/${p.hospital.id}`}>{hospitalName(p.hospital.name)} - {hospitalName(p.hospital.city)}, {p.hospital.state}</Link> <p>{formatStars(p.hospital.rating_average)}</p></td>
             <td>{p.total_discharges}</td>
             <td>${formatDollars(p.average_covered_charges)}</td>
             <td>{percent(p.average_covered_charges, procedure.nat_avg_cost)}%</td>

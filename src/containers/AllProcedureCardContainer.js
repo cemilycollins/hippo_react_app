@@ -1,5 +1,5 @@
 import React from 'react'
-import { ROOT_URL, setProcedures } from '../redux/actions'
+import { ROOT_URL, setProcedures, addProcedures } from '../redux/actions'
 import { connect } from 'react-redux'
 import AllProcedureCard from '../components/AllProcedureCard'
 
@@ -21,15 +21,46 @@ class AllProceduresContainer extends React.Component {
   componentDidMount() {
     this._isMounted = true
     if (this._isMounted && this.props.procedures.length === 0) {
-      fetch(ROOT_URL + '/procedures')
+      fetch(ROOT_URL + `/procedures?first=${0}&last=${99}`)
         .then(r => r.json())
         .then(json => {
           this.props.setProcedures(json)
           this.setState({
-            filteredProcedures: this.props.procedures,
-            procedures: this.props.procedures.slice(0,15)
+            allProcedures: json,
+            filteredProcedures: json,
+            procedures: json.slice(0,15)
+          })
+          fetch(ROOT_URL + `/procedures?first=${100}&last=${572}`)
+            .then(r => r.json())
+            .then(json => {
+              this.props.addProcedures(json)
+              this.setState({
+                allProcedures: [...this.state.allProcedures, ...json],
+                filteredProcedures: [...this.state.filteredProcedures, ...json]
+              })
+            })
+        })
+    } else if (this._isMounted && this.props.procedures.length === 100) {
+      this.setState({
+        allProcedures: this.props.procedures,
+        filteredProcedures: this.props.procedures,
+        procedures: this.props.procedures.slice(0,15)
+      })
+      fetch(ROOT_URL + `/procedures?first=${100}&last=${572}`)
+        .then(r => r.json())
+        .then(json => {
+          this.props.addProcedures(json)
+          this.setState({
+            allProcedures: [...this.state.allProcedures, ...json],
+            filteredProcedures: [...this.state.filteredProcedures, ...json]
           })
         })
+    } else if (this._isMounted && this.props.procedures.length === 100) {
+      this.setState({
+        allProcedures: this.props.procedures,
+        filteredProcedures: this.props.procedures,
+        procedures: this.props.procedures.slice(0,15)
+      })
     }
   }
 
@@ -63,8 +94,8 @@ class AllProceduresContainer extends React.Component {
   }
 
   handleChange = (e) => {
-    let filtered = this.props.procedures.filter(p => (
-      p.procedure_name.toLowerCase().includes(e.target.value.toLowerCase())
+    let filtered = this.state.allProcedures.filter(p => (
+      p.name.toLowerCase().includes(e.target.value.toLowerCase())
     ))
     let last = 15
 
@@ -145,4 +176,4 @@ class AllProceduresContainer extends React.Component {
 }
 const mapStateToProps = ({procedures}) => ({procedures})
 
-export default connect(mapStateToProps, {setProcedures})(AllProceduresContainer)
+export default connect(mapStateToProps, {setProcedures, addProcedures})(AllProceduresContainer)

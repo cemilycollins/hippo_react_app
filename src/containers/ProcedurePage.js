@@ -62,7 +62,9 @@ class ProcedurePage extends React.Component {
   }
 
   handleSortByRating = (e) => {
-    let sort = this.state.filteredHPs.sort( (a,b) => b.rating_average - a.rating_average)
+    let sort = this.state.filteredHPs.sort( (a,b) => {
+      return b.hospital.rating_average - a.hospital.rating_average
+    })
     this.setState({
       sortByRating: true,
       sortLowToHigh: false,

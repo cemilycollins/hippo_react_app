@@ -73,8 +73,13 @@ div.loader {
   min-height: 175px;
 }
 
-.hospitalContainer {
+#hospitalContainer {
   max-width: 600px;
+  margin: auto;
+}
+
+#hospitalContainer2 {
+  max-width: 850px;
   margin: auto;
 }
 

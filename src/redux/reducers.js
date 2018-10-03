@@ -102,6 +102,8 @@ function proceduresReducer(state = [], action) {
   switch (action.type) {
     case "SET_PROCEDURES":
       return action.procedures
+    case "ADD_PROCEDURES":
+      return [...state, ...action.procedures]
     default:
       return state
   }

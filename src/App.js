@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import { Route, Switch, withRouter } from 'react-router-dom'
 
 import NavBar from './components/NavBar'
+import About from './components/About'
 import HospitalContainer from './containers/HospitalContainer'
 import CreateUserForm from './components/CreateUserForm'
 import LoginForm from './components/LoginForm'
@@ -36,7 +37,10 @@ class App extends Component {
       <div className="App">
         <NavBar user={this.props.user}/>
         <Switch>
-          <Route exact path="/" render={() => <MapPlacesSearch home={true} />} />
+          <Route exact path="/" render={() => <div>
+              <MapPlacesSearch home={true} />
+              <About />
+            </div>} />
           <Route exact path="/hospitals" component={HospitalContainer} />
           <Route exact path="/procedures" component={SearchProceduresPage} />
           <Route exact path="/procedures/table" component={AllProceduresPage} />

@@ -11,7 +11,7 @@ class SearchProceduresPage extends React.Component {
       <div id="profile">
         <h1><i className="ui stethoscope icon"/> Procedures</h1>
           <div className="ui teal segment">
-            <h3>Total Procedures: {ps.length === 0 ? "Loading..." : ps.length}</h3>
+            <h3>Total Procedures: 573</h3>
             <b>Terminology:</b>
             <ul>
               <li><b>MCC</b> - means "Major Complications and Comorbidities" meaning that the patient has another condition or complication that has a major effect on the procedure.</li>

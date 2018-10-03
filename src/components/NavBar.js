@@ -15,6 +15,14 @@ const NavBar = props => {
       </NavLink>
       <NavLink
         exact
+        to="/"
+        className="ui item"
+        activeClassName="ui active item"
+      >
+        Home
+      </NavLink>
+      <NavLink
+        exact
         to="/hospitals"
         className="ui item"
         activeClassName="ui active item"

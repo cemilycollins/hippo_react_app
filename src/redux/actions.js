@@ -21,6 +21,10 @@ export function fetchHospitals(latlng) {
   }
 }
 
+export function addProcedures(json) {
+  return ({type: "ADD_PROCEDURES", procedures: json})
+}
+
 export function setProcedures(json) {
   return ({type: "SET_PROCEDURES", procedures: json})
 }
