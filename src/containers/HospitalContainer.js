@@ -40,7 +40,7 @@ const HospitalContainer = props => {
     return (
       <div>
         <MapPlacesSearch home={false} />
-        <MapContainer />
+        <MapContainer showPage={false} />
         <div className="ui grid" id="hospitalContainer2">
           <div className="four wide column">
             {props.hospitals && props.hospitals.length > 0 ? <div className="ui vertical menu">

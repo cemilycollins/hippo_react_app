@@ -1,4 +1,4 @@
-export const ROOT_URL = "http://localhost:3000"
+export const ROOT_URL = "https://hippo-rails-api.herokuapp.com"
 
 // http://localhost:3000
 // https://hippo-rails-api.herokuapp.com
@@ -36,6 +36,10 @@ export function updateUser(user) {
 export function logoutUser() {
   localStorage.clear()
   return {type: "UPDATE_USER", user: null}
+}
+
+export function addAllReviews(reviews) {
+  return {type: "ADD_ALL_REVIEWS", reviews}
 }
 
 export function addReview(review) {

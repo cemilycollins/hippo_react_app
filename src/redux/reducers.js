@@ -47,8 +47,12 @@ function userReducer(state = null, action) {
     case "UPDATE_USER":
       return action.user
     case "ADD_REVIEW":
+      let user2 = {...state}
+      user2.reviews.push(action.review)
+      return user2
+    case "ADD_ALL_REVIEWS":
       let user = {...state}
-      user.reviews.push(action.review)
+      user.reviews = action.reviews
       return user
     case "EDIT_REVIEW":
       let newReviews = state.reviews.map(r => {

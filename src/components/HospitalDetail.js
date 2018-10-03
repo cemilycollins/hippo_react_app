@@ -1,4 +1,5 @@
 import React from 'react'
+import MapContainer from '../containers/NewMapContainer'
 
 function formatStars(rating) {
   let arr = []
@@ -38,12 +39,19 @@ function formatPhone(num) {
 const HospitalDetail = props => {
   let hospital = props.hospital
   return (
-    <div className="ui teal segment">
-      <h3>Average Rating: {formatStars(hospital.rating_average)} ({hospital.total_reviews} reviews)</h3>
-      <b>Address:</b>
-      <p>{hospital.street_address}, {hospital.city}, {hospital.state} {hospital.zip_code}</p>
-      <b>Phone Number:</b>
-      <p>{formatPhone(hospital.phone)}</p>
+    <div className="ui grid">
+      <div className="eight wide column">
+        <div className="ui teal segment" id="hospitalDetail">
+          <h3>Average Rating: {formatStars(hospital.rating_average)} ({hospital.total_reviews} reviews)</h3>
+          <b>Address:</b>
+          <p>{hospital.street_address}, {hospital.city}, {hospital.state} {hospital.zip_code}</p>
+          <b>Phone Number:</b>
+          <p>{formatPhone(hospital.phone)}</p>
+        </div>
+      </div>
+      <div className="eight wide column">
+        {hospital.latitude ? <MapContainer showPage={true} latlng={{lat: hospital.latitude, lng: hospital.longitude}} hospital={hospital}/> : null }
+      </div>
     </div>
   )
 }

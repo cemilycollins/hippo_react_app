@@ -18,9 +18,19 @@ class OtherUserProfile extends React.Component {
     if (this._isMounted) {
       fetch(ROOT_URL + `/users/${this.props.id}`)
         .then(r => r.json())
-        .then(json => this.setState({
-          user: json
-        }))
+        .then(json => {
+          this.setState({
+            user: json
+          })
+          fetch(ROOT_URL + `/userreviews?user_id=${json.id}`)
+            .then(r => r.json())
+            .then(reviews => {
+              json.reviews = reviews
+              this.setState({
+                user: json
+              })
+            })
+        })
     }
   }
 

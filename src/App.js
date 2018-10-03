@@ -15,7 +15,7 @@ import MapPlacesSearch from './components/MapPlacesSearch'
 import ProcedurePage from './containers/ProcedurePage'
 import AllProceduresPage from './containers/AllProceduresPage'
 import SearchProceduresPage from './containers/SearchProceduresPage'
-import { ROOT_URL, updateUser, fetchHospitals} from './redux/actions'
+import { ROOT_URL, updateUser, fetchHospitals, addAllReviews} from './redux/actions'
 
 
 class App extends Component {
@@ -28,7 +28,14 @@ class App extends Component {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       }).then(r => r.json())
-      .then(user => this.props.updateUser(user))
+      .then(user => {
+        this.props.updateUser(user)
+        fetch(ROOT_URL + `/userreviews?user_id=${user.id}`)
+          .then(r => r.json())
+          .then(reviews => {
+            this.props.addAllReviews(reviews)
+          })
+      })
     }
   }
 
@@ -63,4 +70,4 @@ const mapStateToProps = (state) => ({
   users: state.users
 })
 
-export default withRouter(connect(mapStateToProps, {fetchHospitals, updateUser})(App))
+export default withRouter(connect(mapStateToProps, {fetchHospitals, updateUser, addAllReviews})(App))

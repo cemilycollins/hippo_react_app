@@ -2,7 +2,7 @@ import React from 'react'
 
 const About = () => {
   return (
-    <div id="profile">
+    <div id="about">
       <div style={{textAlign: "center"}}>
         <h1>Our Story</h1>
         <p></p>

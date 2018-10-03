@@ -69,6 +69,12 @@ div.loader {
   max-width: 1100px;
 }
 
+#about {
+  padding: 20px;
+  margin: auto;
+  max-width: 1000px;
+}
+
 #profileSegment {
   min-height: 175px;
 }
@@ -95,6 +101,15 @@ div.loader {
   margin: auto;
   padding: 20px;
   position: relative;
+}
+#map2 {
+  height: 25vh;
+  width: 100%;
+  margin: auto;
+}
+
+#hospitalDetail {
+  height: 25vh;
 }
 
 #placesSearch {

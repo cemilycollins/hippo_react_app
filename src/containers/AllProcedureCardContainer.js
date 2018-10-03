@@ -55,7 +55,7 @@ class AllProceduresContainer extends React.Component {
             filteredProcedures: [...this.state.filteredProcedures, ...json]
           })
         })
-    } else if (this._isMounted && this.props.procedures.length === 100) {
+    } else if (this._isMounted && this.props.procedures.length > 100) {
       this.setState({
         allProcedures: this.props.procedures,
         filteredProcedures: this.props.procedures,

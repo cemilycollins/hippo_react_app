@@ -56,7 +56,7 @@ const HospitalMap = withScriptjs(withGoogleMap((props) =>{
   const markers = props.hospitals.map( hospital => <MapMarker hospital={hospital} />
                 );
 
-  if (props.mapCenter) {
+  if (props.mapCenter && props.passProps === false) {
     return (
         <GoogleMap
           zoom={props.mapCenter.zoom}
@@ -65,11 +65,20 @@ const HospitalMap = withScriptjs(withGoogleMap((props) =>{
           {markers}
         </GoogleMap>
       )
+  } else if (props.passProps) {
+    return (
+
+        <GoogleMap
+          zoom={12}
+          center={props.passProps}
+          >
+          <MapMarker hospital={props.hospital} />
+        </GoogleMap>
+      )
   } else {
     return null
   }
-  }
-))
+}))
 
 const mapStateToProps = ({hospitals, mapCenter}) => ({hospitals, mapCenter})
 
