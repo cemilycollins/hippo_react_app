@@ -55,9 +55,13 @@ class ReviewCard extends React.Component {
 
   formatName(name) {
     return name.toLowerCase().split(" ").map(word => {
-      let newWord = word.split("")
-      newWord[0] = newWord[0].toUpperCase()
-      return newWord.join("")
+      if (word.length > 0 && word !== "&") {
+        let newWord = word.split("")
+        newWord[0] = newWord[0].toUpperCase()
+        return newWord.join("")
+      } else {
+        return word
+      }
     }).join(" ")
   }
 
