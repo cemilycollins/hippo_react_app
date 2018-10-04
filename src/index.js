@@ -13,7 +13,7 @@ import rootReducer from "./redux/reducers"
 
 export const history = createHistory()
 
-const store = createStore(connectRouter(history)(rootReducer), {}, compose(applyMiddleware(thunk, routerMiddleware(history)), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
+const store = createStore(connectRouter(history)(rootReducer), {}, compose(applyMiddleware(thunk, routerMiddleware(history))))
 
 ReactDOM.render(
   <Provider store={store}>
