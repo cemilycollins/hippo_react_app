@@ -12,7 +12,7 @@ const About = () => {
           We started Hippo with the mission to bring transparency to hospital pricing and quality. Why shouldn't hospitals be held accountable by customer feedback just like the businesses and restaurants we frequent every day? And why shouldn't we know about pricing upfront?
         </p>
         <p style={{fontSize: "16pt"}}>
-          Named after the Hippocratic Oath, we seek to hold doctors and hospitals accountable to the level of care they swore to uphold.
+          Named after the Hippocratic Oath, we seek to improve the medical experience for everyone and equip YOU to find the care that's best for you and your family.
         </p>
         <p style={{fontSize: "16pt"}}>
           We invite you to check out the hospitals near you. See how their prices compare to the national average. Search for other hospitals with lower prices. Tell others about your experiences at a hospital by leaving a review. You can do all of this with Hippo!

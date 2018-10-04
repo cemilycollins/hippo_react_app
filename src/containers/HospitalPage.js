@@ -65,10 +65,13 @@ class HospitalPage extends React.Component {
       )
     } else {
       return (
-        <div style={{height: '300px', width: '100%'}}>
-          <div className="loader">
-            <div className="ui active dimmer">
-              <div className="ui loader"></div>
+        <div>
+          <h3>Loading... This might take some time...</h3>
+          <div style={{height: '300px', width: '100%'}}>
+            <div className="loader">
+              <div className="ui active dimmer">
+                <div className="ui loader"></div>
+              </div>
             </div>
           </div>
         </div>
