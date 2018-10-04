@@ -170,7 +170,7 @@ class AllProceduresContainer extends React.Component {
           </div> : null
         }
         {this.props.all && this.props.procedures.length === 0 ? <div>
-          <h3>Loading... This may take a while...</h3>
+          <h3>Loading...</h3>
             <div style={{height: '300px', width: '100%', position: 'relative'}}>
               <div className="loader">
                 <div className="ui active dimmer">
