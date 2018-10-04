@@ -22,7 +22,7 @@ class SearchProceduresPage extends React.Component {
             <p>To see a full list of CC and MCC codes <a href="https://www.cms.gov/icd10manual/fullcode_cms/P0370.html" >click here</a></p>
           </div>
         <div className="ui divider"></div>
-          <div style={{"text-align": "center"}}>
+          <div style={{textAlign: "center"}}>
             <h2>All Procedures:</h2>
             <h4>Want to see this in table format? <button className="ui button" onClick={() => this.props.push('/procedures/table')}>Click Here!</button></h4>
             <AllProcedureCardContainer all={true} procedures={ps} />

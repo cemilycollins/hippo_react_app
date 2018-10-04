@@ -20,11 +20,11 @@ const AllProcedureCard = props => {
         <div className="header"><Link to={`/procedures/${p.id}`}>{p.name}</Link></div>
       </div>
       <div className="content">
-      <h4 className="ui sub header" style={{'font-size': "12pt"}}>Pricing</h4>
+      <h4 className="ui sub header" style={{fontSize: "12pt"}}>Pricing</h4>
       <div className="ui small feed">
         <div className="event">
           <div className="content">
-            <div className="summary" style={{'font-size': "12pt"}}>
+            <div className="summary" style={{fontSize: "12pt"}}>
             <i className="money bill alternate outline icon"></i>
             <b style={{color: "#733BBF"}}>${formatDollars(p.nat_avg_cost)}</b> national average
             </div>

@@ -141,13 +141,13 @@ class AllProceduresContainer extends React.Component {
 
   render() {
     return (
-      <div style={{"text-align": "center"}}>
+      <div style={{textAlign: "center"}}>
         {this.props.procedures.length > 0 ?
           <div>
             <form className="ui form" style={{padding: "10px"}} onSubmit={(e) => e.preventDefault()}>
               <span className="inline field">
-                <label style={{"font-size": "12pt"}}>Filter by keyword</label>
-                <input type='text' style={{"min-width": "400px"}} value={this.state.searchTerm}  onChange={this.handleChange} placeholder="Heart transplant, Bronchitis, Hip..." />
+                <label style={{fontSize: "12pt"}}>Filter by keyword</label>
+                <input type='text' style={{minWidth: "400px"}} value={this.state.searchTerm}  onChange={this.handleChange} placeholder="Heart transplant, Bronchitis, Hip..." />
               </span>
             </form>
             {this.state.filteredProcedures.length > 15 ? <span>
