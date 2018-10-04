@@ -40,7 +40,7 @@ class AllProceduresTable extends React.Component {
       )
     } else {
       return (
-        <div style={{height: '300px', maxWidth: '1100px'}} id='profile'>
+        <div style={{height: '300px', maxWidth: '1100px', position: 'relative'}} id='profile'>
           <div className="loader">
             <div className="ui active dimmer">
               <div className="ui loader"></div>
