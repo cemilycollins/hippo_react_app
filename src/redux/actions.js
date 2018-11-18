@@ -1,6 +1,5 @@
 export const ROOT_URL = "https://hippo-rails-api.herokuapp.com"
 
-
 // http://localhost:3000
 // https://hippo-rails-api.herokuapp.com
 
