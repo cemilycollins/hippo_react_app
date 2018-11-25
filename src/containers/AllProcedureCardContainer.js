@@ -30,7 +30,7 @@ class AllProceduresContainer extends React.Component {
             filteredProcedures: json,
             procedures: json.slice(0,15)
           })
-          fetch(ROOT_URL + `/procedures?first=${100}&last=${572}`)
+          fetch(ROOT_URL + `/procedures?first=${100}&last=${299}`)
             .then(r => r.json())
             .then(json => {
               this.props.addProcedures(json)
@@ -38,6 +38,15 @@ class AllProceduresContainer extends React.Component {
                 allProcedures: [...this.state.allProcedures, ...json],
                 filteredProcedures: [...this.state.filteredProcedures, ...json]
               })
+              fetch(ROOT_URL + `/procedures?first=${300}&last=${572}`)
+                .then(r => r.json())
+                .then(json => {
+                  this.props.addProcedures(json)
+                  this.setState({
+                    allProcedures: [...this.state.allProcedures, ...json],
+                    filteredProcedures: [...this.state.filteredProcedures, ...json]
+                  })
+                })
             })
         })
     } else if (this._isMounted && this.props.procedures.length === 100) {

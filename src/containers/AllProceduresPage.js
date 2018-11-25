@@ -16,30 +16,13 @@ class AllProceduresPage extends React.Component {
     }
   }
 
-  _isMounted = false
-
   componentDidMount() {
-    this._isMounted = true
-    if (this._isMounted && this.props.procedures.length === 0) {
-      fetch(ROOT_URL + '/procedures')
-        .then(r => r.json())
-        .then(json => {
-          this.props.setProcedures(json)
-          this.setState({
-            filteredProcedures: [...json],
-            allProcedures: [...json]
-          })
-        })
-    } else if (this._isMounted && this.props.procedures.length > 0){
+    if (this._isMounted && this.props.procedures.length > 0){
       this.setState({
         filteredProcedures: [...this.props.procedures],
         allProcedures: [...this.props.procedures]
       })
     }
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false
   }
 
   handleChange = (e) => {
